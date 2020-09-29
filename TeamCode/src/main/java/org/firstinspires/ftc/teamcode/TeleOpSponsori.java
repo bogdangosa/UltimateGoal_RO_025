@@ -106,8 +106,8 @@ public class TeleOpSponsori extends OpMode {
         double strafeLeft = gamepad1.left_trigger;
 
         // Setam puterea
-        rightPower = Range.clip(drive+turn,-1.0,1.0);
-        leftPower = Range.clip(drive-turn,-1.0,1.0);
+        rightPower = Range.clip(drive - turn,-1.0,1.0);
+        leftPower = Range.clip(drive + turn,-1.0,1.0);
 
 
         // Ne deplasam in ce directie s-a apasat pe controller
@@ -139,6 +139,8 @@ public class TeleOpSponsori extends OpMode {
             Robot.Intake(-1);
         else if(gamepad2.b)
             Robot.Intake(1);
+        else
+            Robot.StopIntakeMotors();
 
     }
 

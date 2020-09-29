@@ -53,7 +53,7 @@ import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="Teste_TeleOp", group="Iterative Opmode")
 //@Disabled
-public class TeleOpTeste extends OpMode
+public class TeleOpTesteBogdan extends OpMode
 {
     // Declare OpMode members.
     /*
@@ -61,7 +61,7 @@ public class TeleOpTeste extends OpMode
      */
 
     private ElapsedTime runtime = new ElapsedTime();
-    HardwareMapTeste Robot = new HardwareMapTeste();
+    HardwareMapTesteBogdan Robot = new HardwareMapTesteBogdan();
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -99,8 +99,7 @@ public class TeleOpTeste extends OpMode
         //Get power fot the test motor from the right sticky y
         MotorPower = -gamepad1.right_stick_y;
 
-        // Send calculated power to the motor
-        Robot.MotorTest.setPower(MotorPower);
+
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
@@ -112,7 +111,7 @@ public class TeleOpTeste extends OpMode
      */
     @Override
     public void stop() {
-        Robot.StopMotor();
+
     }
 
 

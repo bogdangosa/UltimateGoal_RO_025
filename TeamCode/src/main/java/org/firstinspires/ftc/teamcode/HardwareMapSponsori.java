@@ -71,6 +71,10 @@ public class HardwareMapSponsori {
     public DcMotor RightIntakeMotor = null;
     public DcMotor LeftIntakeMotor = null;
 
+    // Declarare Servouri
+    public servo ServoBariera = null;
+    public servo ServoBrat = null;
+
     //Declarare HardwareMap
     HardwareMap HWM_Sponsori  =  null;
 
@@ -93,6 +97,11 @@ public class HardwareMapSponsori {
 
         RightIntakeMotor=HWM_Sponsori.get(DcMotor.class,"RightIntakeMotor");
         LeftIntakeMotor=HWM_Sponsori.get(DcMotor.class,"LeftIntakeMotor");
+
+        // Initializare Servouri
+
+        ServoBariera = HWM_Sponsori.get(servo.class,"ServoBariera");
+        ServoBrat = HWM_Sponsori.get(servo.class,"ServoBrat");
 
         // Seteaza directia Motoarelor de Deplasare
 
@@ -136,8 +145,8 @@ public class HardwareMapSponsori {
         LeftIntakeMotor.setPower(0);
     }
     public void Intake(double direction){
-        RightIntakeMotor.setPower(direction*0.7);
-        LeftIntakeMotor.setPower(direction*0.7);
+        RightIntakeMotor.setPower(direction*0.5);
+        LeftIntakeMotor.setPower(direction*0.5);
     }
 
 }

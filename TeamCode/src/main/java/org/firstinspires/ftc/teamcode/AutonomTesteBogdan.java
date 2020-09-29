@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -56,8 +57,10 @@ import org.firstinspires.ftc.teamcode.HardwareMapTeste;
 
 @Autonomous(name="Autonom Teste", group="Linear Opmode")
 //@Disabled
-public class AutonomTeste extends LinearOpMode {
+public class AutonomTesteBogdan extends LinearOpMode {
 
+
+    private static final double SERVO_HOME = 0.1;
 
     //Declaring Hardware Map
     private ElapsedTime runtime = new ElapsedTime();
@@ -75,19 +78,31 @@ public class AutonomTeste extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        PornesteMotorMilisecunde(0.5,3000);
-        sleep(3000);
-        PornesteMotorMilisecunde(-0.5,3000);
+        while (opModeIsActive()){
+            telemetry.addData("Servo180: ", "(%.2f)",Robot.ServoTest180.getPosition());
+
+            if(Robot.TouchSenzor.getState()){
+                telemetry.addData("TouchSenzor", "TRUE");
+                telemetry.update();
+                Robot.ServoTest180.setPosition(0.8);
+                sleep(2000);
+                telemetry.addData("Am AJuns Aici", "TRUE");
+                telemetry.update();
+                Robot.ServoTest360.setPosition(SERVO_HOME);
+                sleep(2000);
+            }
+            else {
+                telemetry.addData("TouchSenzor", "FALSE");
+                telemetry.update();
+            }
+
+
+        }
 
 
 
     }
 
-    public void PornesteMotorMilisecunde(double power,long miliseconds){
-        Robot.MotorTest.setPower(power);
-        sleep(miliseconds);
-        Robot.StopMotor();
-    }
 
 
 }

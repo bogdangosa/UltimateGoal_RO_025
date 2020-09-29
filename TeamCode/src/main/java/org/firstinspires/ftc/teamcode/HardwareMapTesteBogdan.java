@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -54,42 +55,51 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
  * Servo channel:  Servo to open left claw:  "left_hand"
  * Servo channel:  Servo to open right claw: "right_hand"
  */
-public class HardwareMapTeste{
+public class HardwareMapTesteBogdan{
     /** Hardware Map dedicat testelor **/
 
-    //motoru care vreau sa il testez
-    public DcMotor MotorTest = null;
+    // Servourile care vreau sa le testez
+    public Servo ServoTest90 = null;
+    public Servo ServoTest180 = null;
+    public Servo ServoTest360 = null;
+    public DigitalChannel TouchSenzor = null;
 
-    public WebcamName Webcam1 = null;
+    // declar niste constate
+    public static final double SERVO_HOME = 0.1;
+    public static final double SERVO_MAXVAL = 0.4;
+    public static final double SERVO_MINVAL =  -0.4;
 
     HardwareMap HWM_Teste  =  null;
 
     //Constructor
-    public HardwareMapTeste(){}
+    public HardwareMapTesteBogdan(){}
 
     public void init(HardwareMap ahwMap){
         HWM_Teste = ahwMap;
 
-        /* Declarare motor */
-        MotorTest = HWM_Teste.get(DcMotor.class,"MotorTest");
+        /* Declarare servouri */
 
-        /*Declarare Webcam*/
-        Webcam1 = HWM_Teste.get(WebcamName.class,"Webcam1");
+        ServoTest90 = HWM_Teste.get(Servo.class,"ServoTest90");
+        ServoTest180 = HWM_Teste.get(Servo.class,"ServoTest180");
+        ServoTest360 = HWM_Teste.get(Servo.class,"ServoTest360");
 
+        /* Declarare senzori */
 
-        /* Setare Directie initiala */
-        MotorTest.setDirection(DcMotor.Direction.FORWARD);
+        TouchSenzor = HWM_Teste.get(DigitalChannel.class,"TouchSenzor");
 
-        /*Setare putere initiala*/
-        StopMotor();
+        // Setam Servourile la Pozitia Initiala
 
-        /* Setare mod: cu sau fara encodere */
-        MotorTest.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        ServoTest90.setPosition(SERVO_HOME);
+        ServoTest180.setPosition(SERVO_HOME);
+        ServoTest360.setPosition(SERVO_HOME);
+
+        // Setare directie servouri
+        ServoTest90.setDirection(Servo.Direction.FORWARD);
+        ServoTest180.setDirection(Servo.Direction.FORWARD);
+        ServoTest360.setDirection(Servo.Direction.FORWARD);
+
     }
 
-    public void StopMotor(){
-        MotorTest.setPower(0);
-    }
 
 
 }
