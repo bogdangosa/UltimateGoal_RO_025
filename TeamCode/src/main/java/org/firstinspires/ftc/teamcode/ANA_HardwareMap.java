@@ -29,80 +29,83 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.HardwareMapTesteBogdan;
-
-
 /**
- * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
- * the autonomous or the teleop period of an FTC match. The names of OpModes appear on the menu
- * of the FTC Driver Station. When an selection is made from the menu, the corresponding OpMode
+ * This file contains an example of an iterative (Non-Linear) "OpMode".
+ * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
+ * The names of OpModes appear on the menu of the FTC Driver Station.
+ * When an selection is made from the menu, the corresponding OpMode
  * class is instantiated on the Robot Controller and executed.
  *
  * This particular OpMode just executes a basic Tank Drive Teleop for a two wheeled robot
- * It includes all the skeletal structure that all linear OpModes contain.
+ * It includes all the skeletal structure that all iterative OpModes contain.
  *
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Autonom Teste", group="Linear Opmode")
-//@Disabled
-public class AutonomTesteBogdan extends LinearOpMode {
+public class ANA_HardwareMap
+{
+    //MOTOARE DEPLASARE
+    public DcMotor LeftFrontMotor = null;
+    public DcMotor LeftBackMotor = null;
+    public DcMotor RightFrontMotor = null;
+    public DcMotor RightBackMotor = null;
 
+    //MOTOARE INTAKE
+    public DcMotor IntakeLeft = null;
+    public DcMotor IntakeRight = null;
 
-    private static final double SERVO_HOME = 0.1;
+    //SERVO-URI
+    //Ce fac servo-urile de pe robot?
+    public Servo servo1 = null;
+    public Servo servo2 = null;
 
-    //Declaring Hardware Map
-    private ElapsedTime runtime = new ElapsedTime();
-    HardwareMapTesteBogdan Robot = new HardwareMapTesteBogdan();
-
-    @Override
-    public void runOpMode() {
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
-
-        Robot.init(hardwareMap);
-
-
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
-        runtime.reset();
-
-        while (opModeIsActive()){
-            telemetry.addData("Servo180: ", "(%.2f)",Robot.ServoTest180.getPosition());
-
-            if(Robot.TouchSenzor.getState()){
-                telemetry.addData("TouchSenzor", "TRUE");
-                telemetry.update();
-                Robot.ServoTest180.setPosition(0.8);
-                sleep(2000);
-                telemetry.addData("Am AJuns Aici", "TRUE");
-                telemetry.update();
-                Robot.ServoTest360.setPosition(SERVO_HOME);
-                sleep(2000);
-            }
-            else {
-                telemetry.addData("TouchSenzor", "FALSE");
-                telemetry.update();
-            }
-
-
-        }
-
-
+    HardwareMap Ana_HWMap =  null;
+    public ANA_HardwareMap() {
 
     }
 
+    public void init(HardwareMap ahwMap) {
+        Ana_HWMap = ahwMap;
 
 
+        LeftFrontMotor = Ana_HWMap.get(DcMotor.class, "LeftFrontMotor");
+        LeftBackMotor = Ana_HWMap.get(DcMotor.class, "LeftBackMotor");
+        RightFrontMotor = Ana_HWMap.get(DcMotor.class, "RightFrontMotor");
+        RightBackMotor = Ana_HWMap.get(DcMotor.class, "RightBackMotor");
+
+        IntakeLeft = Ana_HWMap.get(DcMotor.class, "IntakeLeft");
+        IntakeRight = Ana_HWMap.get(DcMotor.class, "IntakeRight");
+
+
+        /** Setez directia */
+        LeftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
+        LeftBackMotor.setDirection(DcMotor.Direction.FORWARD);
+        RightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+        RightBackMotor.setDirection(DcMotor.Direction.REVERSE);
+
+        IntakeRight.setDirection(DcMotor.Direction.FORWARD);
+        IntakeLeft.setDirection(DcMotor.Direction.FORWARD);
+
+
+        /** Setez motoarele la 0 */
+        LeftFrontMotor.setPower(0);
+        LeftBackMotor.setPower(0);
+        RightFrontMotor.setPower(0);
+        RightBackMotor.setPower(0);
+
+        IntakeLeft.setPower(0);
+        IntakeRight.setPower(0);
+
+    }
 }
