@@ -62,6 +62,11 @@ public class TeleOpSponsori extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
     HardwareMapSponsori Robot = new HardwareMapSponsori();
 
+    double TimpBariera=0.0;
+    double TimpBrat=0.0;
+
+
+
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -130,10 +135,6 @@ public class TeleOpSponsori extends OpMode {
             Robot.LeftBackMotor.setPower(leftPower);
         }
 
-        // Show the elapsed game time and wheel power.
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
-
         /** Intake **/
         if(gamepad2.a)
             Robot.Intake(-1);
@@ -144,6 +145,8 @@ public class TeleOpSponsori extends OpMode {
 
         // Controlare Bariera
         if(gamepad2.x){
+            TimpBariera = Double.parseDouble( runtime.toString() );
+
             if(Robot.ServoBariera.getPosition()==0.5)
                 Robot.ServoBariera.setPosition(0.7);
             else if(Robot.ServoBariera.getPosition()==0.7)
@@ -151,11 +154,20 @@ public class TeleOpSponsori extends OpMode {
         }
 
         if(gamepad2.y){
+            TimpBrat = Double.parseDouble( runtime.toString() );
+
             if(Robot.ServoBrat.getPosition()==0.9)
                 Robot.ServoBrat.setPosition(0.0);
             else if(Robot.ServoBrat.getPosition()==0.0)
                 Robot.ServoBrat.setPosition(0.9);
         }
+
+        // Show the elapsed game time and wheel power.
+        telemetry.addData("Status", "Run Time: " + runtime.toString());
+        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+        telemetry.addData("TimpBrat",TimpBrat);
+        telemetry.addData("TimpBariera",TimpBariera);
+        telemetry.update();
     }
 
     /*
