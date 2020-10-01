@@ -97,7 +97,7 @@ public class ANA_HardwareMap
         RightBackMotor.setDirection(DcMotor.Direction.REVERSE);
 
         IntakeRight.setDirection(DcMotor.Direction.FORWARD);
-        IntakeLeft.setDirection(DcMotor.Direction.FORWARD);
+        IntakeLeft.setDirection(DcMotor.Direction.REVERSE);
 
 
         /** Setez motoarele la 0 */

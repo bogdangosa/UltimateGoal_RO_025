@@ -55,7 +55,7 @@ import org.firstinspires.ftc.teamcode.HardwareMapTesteBogdan;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Autonom Teste", group="Linear Opmode")
+@Autonomous(name="Autonom Sponsori", group="Linear Opmode")
 //@Disabled
 public class AutonomSponsori extends LinearOpMode {
 

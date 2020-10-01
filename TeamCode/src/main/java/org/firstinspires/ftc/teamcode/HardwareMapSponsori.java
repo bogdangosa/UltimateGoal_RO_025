@@ -119,8 +119,8 @@ public class HardwareMapSponsori {
         LeftIntakeMotor.setDirection(DcMotor.Direction.REVERSE);
 
         // Pune Servourile in pozitia initiala
-        ServoBariera.setPosition(0.5);
-        ServoBrat.setPosition(0.9);
+        ServoBariera.setPosition(0.0);
+        ServoBrat.setPosition(0.95);
 
         //Seteaza directie Servouri
         ServoBariera.setDirection(Servo.Direction.FORWARD);

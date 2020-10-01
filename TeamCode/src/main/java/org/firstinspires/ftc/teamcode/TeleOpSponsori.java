@@ -146,21 +146,22 @@ public class TeleOpSponsori extends OpMode {
         // Controlare Bariera
         if(gamepad2.x){
             //TimpBariera = Double.parseDouble( runtime.toString() );
+            int pozitie_bariera= (int)(Robot.ServoBariera.getPosition()*100);
 
-            if(Robot.ServoBariera.getPosition()==0.5)
-                Robot.ServoBariera.setPosition(0.7);
-            else if(Robot.ServoBariera.getPosition()==0.7)
+            if(pozitie_bariera==50)
+                Robot.ServoBariera.setPosition(0.0);
+            else if(pozitie_bariera==0)
                 Robot.ServoBariera.setPosition(0.5);
         }
 
         if(gamepad2.y){
            // TimpBrat = Double.parseDouble( runtime.toString() );
-            int pozitie_brat= (int)(Robot.ServoBrat.getPosition()*10);
+            int pozitie_brat= (int)(Robot.ServoBrat.getPosition()*100);
 
-            if(pozitie_brat==9)
+            if(pozitie_brat==95)
                 Robot.ServoBrat.setPosition(0.0);
             else if(pozitie_brat==0)
-                Robot.ServoBrat.setPosition(0.9);
+                Robot.ServoBrat.setPosition(0.95);
         }
 
         // Show the elapsed game time and wheel power.

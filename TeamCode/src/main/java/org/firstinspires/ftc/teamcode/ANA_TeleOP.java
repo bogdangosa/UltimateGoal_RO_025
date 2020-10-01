@@ -142,9 +142,9 @@ public class ANA_TeleOP extends OpMode
         }
 
         if(gamepad2.a)
-            robot.ServoBariera.setPosition(1);
+            robot.ServoOutTake.setPosition(1);
         if(gamepad2.b)
-            robot.ServoBariera.setPosition(0);
+            robot.ServoOutTake.setPosition(0);
 
         if(gamepad2.x)
             robot.ServoBariera.setPosition(1);
