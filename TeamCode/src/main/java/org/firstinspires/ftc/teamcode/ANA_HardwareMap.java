@@ -67,8 +67,8 @@ public class ANA_HardwareMap
 
     //SERVO-URI
     //Ce fac servo-urile de pe robot?
-    public Servo servo1 = null;
-    public Servo servo2 = null;
+    public Servo ServoBariera = null;
+    public Servo ServoOutTake = null;
 
     HardwareMap Ana_HWMap =  null;
     public ANA_HardwareMap() {
@@ -87,6 +87,8 @@ public class ANA_HardwareMap
         IntakeLeft = Ana_HWMap.get(DcMotor.class, "IntakeLeft");
         IntakeRight = Ana_HWMap.get(DcMotor.class, "IntakeRight");
 
+        ServoBariera = Ana_HWMap.get(Servo.class, "ServoBariera");
+        ServoOutTake = Ana_HWMap.get(Servo.class, "ServoOutTake");
 
         /** Setez directia */
         LeftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -106,6 +108,9 @@ public class ANA_HardwareMap
 
         IntakeLeft.setPower(0);
         IntakeRight.setPower(0);
+
+        ServoBariera.setPosition(0);
+        ServoOutTake.setPosition(0);
 
     }
 }

@@ -120,7 +120,7 @@ public class HardwareMapSponsori {
 
         // Pune Servourile in pozitia initiala
         ServoBariera.setPosition(0.5);
-        ServoBrat.setPosition(SERVO_HOME);
+        ServoBrat.setPosition(0.9);
 
         //Seteaza directie Servouri
         ServoBariera.setDirection(Servo.Direction.FORWARD);

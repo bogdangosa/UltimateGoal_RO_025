@@ -145,7 +145,7 @@ public class TeleOpSponsori extends OpMode {
 
         // Controlare Bariera
         if(gamepad2.x){
-            TimpBariera = Double.parseDouble( runtime.toString() );
+            //TimpBariera = Double.parseDouble( runtime.toString() );
 
             if(Robot.ServoBariera.getPosition()==0.5)
                 Robot.ServoBariera.setPosition(0.7);
@@ -154,17 +154,19 @@ public class TeleOpSponsori extends OpMode {
         }
 
         if(gamepad2.y){
-            TimpBrat = Double.parseDouble( runtime.toString() );
+           // TimpBrat = Double.parseDouble( runtime.toString() );
+            int pozitie_brat= (int)(Robot.ServoBrat.getPosition()*10);
 
-            if(Robot.ServoBrat.getPosition()==0.9)
+            if(pozitie_brat==9)
                 Robot.ServoBrat.setPosition(0.0);
-            else if(Robot.ServoBrat.getPosition()==0.0)
+            else if(pozitie_brat==0)
                 Robot.ServoBrat.setPosition(0.9);
         }
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+        telemetry.addData("Servo Brat: ", Robot.ServoBrat.getPosition());
         telemetry.addData("TimpBrat",TimpBrat);
         telemetry.addData("TimpBariera",TimpBariera);
         telemetry.update();
