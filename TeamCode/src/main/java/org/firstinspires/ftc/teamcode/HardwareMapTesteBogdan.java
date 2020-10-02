@@ -32,7 +32,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -55,52 +54,145 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
  * Servo channel:  Servo to open left claw:  "left_hand"
  * Servo channel:  Servo to open right claw: "right_hand"
  */
-public class HardwareMapTesteBogdan{
-    /** Hardware Map dedicat testelor **/
+public class HardwareMapTesteBogdan {
 
-    // Servourile care vreau sa le testez
-    public Servo ServoTest90 = null;
-    public Servo ServoTest180 = null;
-    public Servo ServoTest360 = null;
-    public DigitalChannel TouchSenzor = null;
+    /**  Acest Hardware Map va fi folosit pentru testari bogdan**/
 
-    // declar niste constate
-    public static final double SERVO_HOME = 0.1;
-    public static final double SERVO_MAXVAL = 0.4;
-    public static final double SERVO_MINVAL =  -0.4;
+    /**  DECLARARI  **/
 
-    HardwareMap HWM_Teste  =  null;
+    // Declarare Motoare Deplasare
+    public DcMotor RightBackMotor = null;
+    public DcMotor RightFrontMotor = null;
+    public DcMotor LeftBackMotor = null;
+    public DcMotor LeftFrontMotor = null;
 
-    //Constructor
+    // Declarare Motoare Intake
+
+    public DcMotor RightIntakeMotor = null;
+    public DcMotor LeftIntakeMotor = null;
+
+    // Declarare Servouri
+    public Servo ServoBariera = null;
+    public Servo ServoBrat = null;
+
+    //Declarare HardwareMap
+    HardwareMap HWM_Sponsori  =  null;
+
+    // Declarare constante
+    public static final double PUTERE_INTAKE = 0.5;
+    public static final double SERVO_HOME = 0.0;
+
+    // Constructor
     public HardwareMapTesteBogdan(){}
 
+    /*  Initializare HardwareMap  */
+
     public void init(HardwareMap ahwMap){
-        HWM_Teste = ahwMap;
+        HWM_Sponsori = ahwMap;
 
-        /* Declarare servouri */
+        // Initializare Motoare de Deplasare
 
-        ServoTest90 = HWM_Teste.get(Servo.class,"ServoTest90");
-        ServoTest180 = HWM_Teste.get(Servo.class,"ServoTest180");
-        ServoTest360 = HWM_Teste.get(Servo.class,"ServoTest360");
+        RightBackMotor = HWM_Sponsori.get(DcMotor.class,"RightBackMotor");
+        RightFrontMotor = HWM_Sponsori.get(DcMotor.class,"RightFrontMotor");
+        LeftBackMotor  = HWM_Sponsori.get(DcMotor.class, "LeftBackMotor");
+        LeftFrontMotor = HWM_Sponsori.get(DcMotor.class, "LeftFrontMotor");
 
-        /* Declarare senzori */
+        // Initializare Motoare pentru Intake
 
-        TouchSenzor = HWM_Teste.get(DigitalChannel.class,"TouchSenzor");
+        RightIntakeMotor=HWM_Sponsori.get(DcMotor.class,"RightIntakeMotor");
+        LeftIntakeMotor=HWM_Sponsori.get(DcMotor.class,"LeftIntakeMotor");
 
-        // Setam Servourile la Pozitia Initiala
+        // Initializare Servouri
 
-        ServoTest90.setPosition(SERVO_HOME);
-        ServoTest180.setPosition(SERVO_HOME);
-        ServoTest360.setPosition(SERVO_HOME);
+        ServoBariera = HWM_Sponsori.get(Servo.class,"ServoBariera");
+        ServoBrat = HWM_Sponsori.get(Servo.class,"ServoBrat");
 
-        // Setare directie servouri
-        ServoTest90.setDirection(Servo.Direction.FORWARD);
-        ServoTest180.setDirection(Servo.Direction.FORWARD);
-        ServoTest360.setDirection(Servo.Direction.FORWARD);
+        // Seteaza directia Motoarelor de Deplasare
+
+        RightBackMotor.setDirection(DcMotor.Direction.FORWARD);
+        RightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
+        LeftBackMotor.setDirection(DcMotor.Direction.REVERSE);
+        LeftFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+
+        // Seteaza directia Motoarelor pentru Intake
+        RightIntakeMotor.setDirection(DcMotor.Direction.FORWARD);
+        LeftIntakeMotor.setDirection(DcMotor.Direction.REVERSE);
+
+        // Pune Servourile in pozitia initiala
+        ServoBariera.setPosition(0.0);
+        ServoBrat.setPosition(0.95);
+
+        //Seteaza directie Servouri
+        ServoBariera.setDirection(Servo.Direction.FORWARD);
+        ServoBrat.setDirection(Servo.Direction.FORWARD);
+
+        // Opreste Motoarele
+
+        StopMovementMotors();
+
+        StopIntakeMotors();
+
+        // Setare mod: cu sau fara Encodere
+
+        RightFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        RightBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        LeftFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        LeftBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
     }
 
+    /* Metode sa faca codul mai lizibil si mai scurt */
 
+
+    public void StopMovementMotors(){
+        RightBackMotor.setPower(0);
+        RightFrontMotor.setPower(0);
+        LeftBackMotor.setPower(0);
+        LeftFrontMotor.setPower(0);
+    }
+
+    public void StopIntakeMotors(){
+        RightIntakeMotor.setPower(0);
+        LeftIntakeMotor.setPower(0);
+    }
+
+    public void RunMovementMotors(double leftpower,double rightpower){
+        RightFrontMotor.setPower(rightpower);
+        RightBackMotor.setPower(rightpower);
+        LeftFrontMotor.setPower(leftpower);
+        LeftBackMotor.setPower(leftpower);
+    }
+    public void StrafeMovementMotors(double power){
+        RightFrontMotor.setPower(power);
+        RightBackMotor.setPower(-power);
+        LeftFrontMotor.setPower(-power);
+        LeftBackMotor.setPower(power);
+    }
+
+    public void Intake(double direction){
+        RightIntakeMotor.setPower(direction*PUTERE_INTAKE);
+        LeftIntakeMotor.setPower(direction*PUTERE_INTAKE);
+    }
+
+    public void InitEncoders(){
+        // Initializeaza Encoderele
+
+        RightFrontMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RightBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        LeftFrontMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        LeftBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        RightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RightBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        LeftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        LeftBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    public double GetRuntimeAsDouble(ElapsedTime runtime){
+        String Sruntime = runtime.toString();
+        Sruntime = Sruntime.substring(0,Sruntime.length()-7);
+        return Double.parseDouble(Sruntime);
+    }
 
 }
-

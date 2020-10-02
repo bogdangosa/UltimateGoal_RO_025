@@ -51,10 +51,9 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Teste_TeleOp", group="Iterative Opmode")
+@TeleOp(name="Sponsori_TeleOp", group="Iterative Opmode")
 //@Disabled
-public class TeleOpTesteBogdan extends OpMode
-{
+public class TeleOpTesteBogdan extends OpMode {
     // Declare OpMode members.
     /*
      * Code to run ONCE when the driver hits INIT
@@ -62,6 +61,11 @@ public class TeleOpTesteBogdan extends OpMode
 
     private ElapsedTime runtime = new ElapsedTime();
     HardwareMapTesteBogdan Robot = new HardwareMapTesteBogdan();
+
+    double TimpBariera=0.0;
+    double TimpBrat=0.0;
+
+
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -93,17 +97,69 @@ public class TeleOpTesteBogdan extends OpMode
      */
     @Override
     public void loop() {
-        // Setup a variable for the motor power
-        double MotorPower;
 
-        //Get power fot the test motor from the right sticky y
-        MotorPower = -gamepad1.right_stick_y;
+        /** Deplasare **/
+
+        //Creem variabila pentru puterea motoarelor
+        double rightPower;
+        double leftPower;
+
+        // Creem variabile care sa preia inputul de la controllere
+        double drive = gamepad1.right_stick_y;
+        double turn  =  gamepad1.left_stick_x;
+        double strafeRight = gamepad1.right_trigger;
+        double strafeLeft = gamepad1.left_trigger;
+
+        // Setam puterea
+        rightPower = Range.clip(drive - turn,-1.0,1.0);
+        leftPower = Range.clip(drive + turn,-1.0,1.0);
 
 
+        // Ne deplasam in ce directie s-a apasat pe controller
+        if(strafeLeft > 0)
+            Robot.StrafeMovementMotors(strafeLeft);
+        else if(strafeRight > 0 )
+            Robot.StrafeMovementMotors(-strafeRight);
+        else
+            Robot.RunMovementMotors(rightPower,leftPower);
+
+        /** Intake **/
+        if(gamepad2.a)
+            Robot.Intake(-1);
+        else if(gamepad2.b)
+            Robot.Intake(1);
+        else
+            Robot.StopIntakeMotors();
+
+        // Controlare Bariera
+        if(gamepad2.x && Robot.GetRuntimeAsDouble(runtime) > TimpBariera + 2 ){
+            TimpBariera = Robot.GetRuntimeAsDouble(runtime);
+            int pozitie_bariera= (int)(Robot.ServoBariera.getPosition()*100);
+
+            if(pozitie_bariera==50)
+                Robot.ServoBariera.setPosition(0.0);
+            else if(pozitie_bariera==0)
+                Robot.ServoBariera.setPosition(0.5);
+        }
+
+        //Controlare Brat
+        if(gamepad2.y && Robot.GetRuntimeAsDouble(runtime) > TimpBrat + 2 ){
+            TimpBrat = Robot.GetRuntimeAsDouble(runtime);
+            int pozitie_brat= (int)(Robot.ServoBrat.getPosition()*100);
+
+            if(pozitie_brat==95)
+                Robot.ServoBrat.setPosition(0.0);
+            else if(pozitie_brat==0)
+                Robot.ServoBrat.setPosition(0.95);
+        }
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("TestMotor", "(%.2f)",MotorPower);
+        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+        telemetry.addData("Servo Brat: ", Robot.ServoBrat.getPosition());
+        telemetry.addData("TimpBrat",TimpBrat);
+        telemetry.addData("TimpBariera",TimpBariera);
+        telemetry.update();
     }
 
     /*
@@ -111,10 +167,11 @@ public class TeleOpTesteBogdan extends OpMode
      */
     @Override
     public void stop() {
-
+        Robot.StopMovementMotors();
+        Robot.StopIntakeMotors();
     }
 
 
 
-}
 
+}
