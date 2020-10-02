@@ -97,25 +97,28 @@ public class ANA_TeleOP extends OpMode
         double strafeRight = gamepad1.right_trigger;
         double strafeLeft = gamepad1.left_trigger;
 
+        double inTake = gamepad2.left_trigger;
+        double outTake = gamepad2.right_trigger;
+
         double drive = gamepad1.right_stick_y;
         double turn =  gamepad1.left_stick_x;
 
-        rightPower = Range.clip(drive - turn,-1.0,1.0);
-        leftPower = Range.clip(drive + turn,-1.0,1.0);
+        rightPower = Range.clip(drive + turn,-1.0,1.0);
+        leftPower = Range.clip(drive - turn,-1.0,1.0);
 
         if (strafeRight>0)
         {
-            robot.LeftFrontMotor.setPower(strafeRight);
-            robot.LeftBackMotor.setPower(-strafeRight);
-            robot.RightFrontMotor.setPower(-strafeRight);
-            robot.RightBackMotor.setPower(strafeRight);
+            robot.LeftFrontMotor.setPower(-strafeRight);
+            robot.LeftBackMotor.setPower(strafeRight);
+            robot.RightFrontMotor.setPower(strafeRight);
+            robot.RightBackMotor.setPower(-strafeRight);
         }
         else if (strafeLeft>0)
         {
-            robot.LeftFrontMotor.setPower(-strafeLeft);
-            robot.LeftBackMotor.setPower(strafeLeft);
-            robot.RightFrontMotor.setPower(strafeLeft);
-            robot.RightBackMotor.setPower(-strafeLeft);
+            robot.LeftFrontMotor.setPower(strafeLeft);
+            robot.LeftBackMotor.setPower(-strafeLeft);
+            robot.RightFrontMotor.setPower(-strafeLeft);
+            robot.RightBackMotor.setPower(strafeLeft);
         }
         else
         {
@@ -125,15 +128,15 @@ public class ANA_TeleOP extends OpMode
             robot.RightBackMotor.setPower(rightPower);
         }
 
-        if (gamepad1.a)
+        if (inTake>0)
         {
-            robot.IntakeLeft.setPower(0.5);
-            robot.IntakeRight.setPower(0.5);
+            robot.IntakeLeft.setPower(inTake);
+            robot.IntakeRight.setPower(inTake);
         }
-        else if (gamepad1.b)
+        else if (outTake>0)
         {
-            robot.IntakeLeft.setPower(-0.5);
-            robot.IntakeRight.setPower(-0.5);
+            robot.IntakeLeft.setPower(-outTake);
+            robot.IntakeRight.setPower(-outTake);
         }
         else
         {
