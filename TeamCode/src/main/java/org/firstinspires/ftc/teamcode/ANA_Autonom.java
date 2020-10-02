@@ -54,10 +54,10 @@ public class ANA_Autonom extends LinearOpMode {
         sleep(150);
 
         /**     MERGE IN FATA   */
-        robot.LeftFrontMotor.setPower(-1);
-        robot.LeftBackMotor.setPower(-1);
-        robot.RightFrontMotor.setPower(-1);
-        robot.RightBackMotor.setPower(-1);
+        robot.LeftFrontMotor.setPower(-0,.7);
+        robot.LeftBackMotor.setPower(-0.7);
+        robot.RightFrontMotor.setPower(-0.7);
+        robot.RightBackMotor.setPower(-0,7);
 
         sleep(500);
 
@@ -88,10 +88,10 @@ public class ANA_Autonom extends LinearOpMode {
         //robot.IntakeLeft.setPower(0);
 
         /**     STRAFE  DREAPTA     */
-        robot.LeftFrontMotor.setPower(-0.85);
-        robot.LeftBackMotor.setPower(0.85);
-        robot.RightFrontMotor.setPower(0.85);
-        robot.RightBackMotor.setPower(-0.85);
+        robot.LeftFrontMotor.setPower(-0.7);
+        robot.LeftBackMotor.setPower(0.7);
+        robot.RightFrontMotor.setPower(0.7);
+        robot.RightBackMotor.setPower(-0.7);
 
         sleep(700);
 
@@ -103,10 +103,10 @@ public class ANA_Autonom extends LinearOpMode {
         sleep(200);
 
         /**     MERGE IN SPATE   */
-        robot.LeftFrontMotor.setPower(1);
-        robot.LeftBackMotor.setPower(1);
-        robot.RightFrontMotor.setPower(1);
-        robot.RightBackMotor.setPower(1);
+        robot.LeftFrontMotor.setPower(10.7);
+        robot.LeftBackMotor.setPower(0.7);
+        robot.RightFrontMotor.setPower(0.7);
+        robot.RightBackMotor.setPower(0.7);
 
         sleep(700);
 
