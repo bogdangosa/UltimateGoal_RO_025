@@ -79,8 +79,15 @@ public class HardwareMapTesteBogdan {
     HardwareMap HWM_Sponsori  =  null;
 
     // Declarare constante
+
     public static final double PUTERE_INTAKE = 0.5;
+    public static final double PUTERE_DEPLASARE_MAX = 0.8;
     public static final double SERVO_HOME = 0.0;
+    public static final double DriveValue = 2.43;
+    public static final double COUNTS_PER_MOTOR    = 1120 ;    // eg: TETRIX Motor Encoder 1440 tetrix    public static final double      DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
+    public static final double DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
+    public static final double WHEEL_DIAMETER_MM   = 4.0 * 25.4;     // For figuring circumference
+    public static final double COUNTS_PER_MM         = (COUNTS_PER_MOTOR * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_MM * 3.1415);
 
     // Constructor
     public HardwareMapTesteBogdan(){}
@@ -157,7 +164,7 @@ public class HardwareMapTesteBogdan {
         LeftIntakeMotor.setPower(0);
     }
 
-    public void RunMovementMotors(double leftpower,double rightpower){
+    public void RunMovementMotors(double rightpower,double leftpower){
         RightFrontMotor.setPower(rightpower);
         RightBackMotor.setPower(rightpower);
         LeftFrontMotor.setPower(leftpower);
@@ -187,6 +194,21 @@ public class HardwareMapTesteBogdan {
         RightBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         LeftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         LeftBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+    public void RunToPositionMode(int RightBackTarget,int RightFrontTarget,int LeftBackTarget,int LeftFrontTarget){
+        RightFrontMotor.setTargetPosition(RightFrontTarget);
+        RightBackMotor.setTargetPosition(RightBackTarget);
+        LeftFrontMotor.setTargetPosition(LeftFrontTarget);
+        LeftBackMotor.setTargetPosition(LeftBackTarget);
+
+        RightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        RightBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        LeftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        LeftBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+    }
+    public boolean VerifMovementMotors(){
+        return RightBackMotor.isBusy() && RightFrontMotor.isBusy() && LeftBackMotor.isBusy() && LeftFrontMotor.isBusy();
     }
 
     public double GetRuntimeAsDouble(ElapsedTime runtime){
