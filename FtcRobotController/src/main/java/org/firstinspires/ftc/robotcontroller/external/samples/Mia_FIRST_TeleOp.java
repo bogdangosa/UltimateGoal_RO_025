@@ -27,13 +27,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.robotcontroller.external.samples;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -51,29 +50,19 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="TeleOpSponsori", group="Iterative Opmode")
-//@Disabled
-public class TeleOpSponsori extends OpMode {
-    // Declare OpMode members.
-    /*
-     * Code to run ONCE when the driver hits INIT
-     */
+@TeleOp(name="Mia_FIRST_TeleOp", group="Iterative Opmode")
+
+public class Mia_FIRST_TeleOp extends OpMode
+{
 
     private ElapsedTime runtime = new ElapsedTime();
-    HardwareMapSponsori Robot = new HardwareMapSponsori();
+    Mia_FIRST_HardwareMap robot = new Mia_FIRST_HardwareMap();
 
-    double TimpBariera=0.0;
-    double TimpBrat=0.0;
-
-
-
-    /*
-     * Code to run ONCE when the driver hits INIT
-     */
     @Override
     public void init() {
-        telemetry.addData("Status", "Before initialazation");
-        Robot.init(hardwareMap);
+        telemetry.addData("Status", "Initialized");
+
+        robot.init(hardwareMap);
         telemetry.addData("Status", "Initialized");
     }
 
@@ -98,79 +87,73 @@ public class TeleOpSponsori extends OpMode {
     @Override
     public void loop() {
 
-        /** Deplasare **/
-
-        //Creem variabila pentru puterea motoarelor
+        double drive = gamepad1.right_stick_y;
+        double turn = gamepad1.left_stick_x;
         double rightPower;
         double leftPower;
+        rightPower = Range.clip(drive+turn,-1,1);
+        leftPower  = Range.clip(drive-turn,-1,1);
 
-        // Creem variabile care sa preia inputul de la controllere
-        double drive = gamepad1.right_stick_y;
-        double turn  =  gamepad1.left_stick_x;
-        double strafeRight = gamepad1.right_trigger;
-        double strafeLeft = gamepad1.left_trigger;
+        double RightStrafe = gamepad1.right_trigger;
+        double LeftStrafe = gamepad1.left_trigger;
+        double InTake = gamepad2.right_trigger;
+        double OutTake = gamepad2.left_trigger;
 
-        // Setam puterea
-        rightPower = Range.clip(drive - turn,-1.0,1.0);
-        leftPower = Range.clip(drive + turn,-1.0,1.0);
-
-
-        // Ne deplasam in ce directie s-a apasat pe controller
-        if(strafeLeft > 0){
-            Robot.LeftBackMotor.setPower(strafeLeft);
-            Robot.LeftFrontMotor.setPower(-strafeLeft);
-            Robot.RightBackMotor.setPower(-strafeLeft);
-            Robot.RightFrontMotor.setPower(strafeLeft);
+        if(RightStrafe>0)
+        {
+            robot.RightFrontMotor.setPower(RightStrafe);
+            robot.RightBackMotor.setPower(-RightStrafe);
+            robot.LeftFrontMotor.setPower(-RightStrafe);
+            robot.LeftBackMotor.setPower(RightStrafe);
         }
-        else if(strafeRight > 0 ){
-            Robot.LeftBackMotor.setPower(-strafeRight);
-            Robot.LeftFrontMotor.setPower(strafeRight);
-            Robot.RightBackMotor.setPower(strafeRight);
-            Robot.RightFrontMotor.setPower(-strafeRight);
+        else if(LeftStrafe>0)
+        {
+            robot.RightFrontMotor.setPower(-LeftStrafe);
+            robot.RightBackMotor.setPower(LeftStrafe);
+            robot.LeftFrontMotor.setPower(LeftStrafe);
+            robot.LeftBackMotor.setPower(-LeftStrafe);
         }
-        else {
-            Robot.RightFrontMotor.setPower(rightPower);
-            Robot.RightBackMotor.setPower(rightPower);
-            Robot.LeftFrontMotor.setPower(leftPower);
-            Robot.LeftBackMotor.setPower(leftPower);
-        }
-
-        /** Intake **/
-        if(gamepad2.a)
-            Robot.Intake(-1);
-        else if(gamepad2.b)
-            Robot.Intake(1);
         else
-            Robot.StopIntakeMotors();
-
-        // Controlare Bariera
-        if(gamepad2.x){
-            //TimpBariera = Double.parseDouble( runtime.toString() );
-            int pozitie_bariera= (int)(Robot.ServoBariera.getPosition()*100);
-
-            if(pozitie_bariera==50)
-                Robot.ServoBariera.setPosition(0.0);
-            else if(pozitie_bariera==0)
-                Robot.ServoBariera.setPosition(0.5);
+        {
+            robot.RightFrontMotor.setPower(rightPower);
+            robot.RightBackMotor.setPower(rightPower);
+            robot.LeftFrontMotor.setPower(leftPower);
+            robot.LeftBackMotor.setPower(leftPower);
         }
-
-        if(gamepad2.y){
-           // TimpBrat = Double.parseDouble( runtime.toString() );
-            int pozitie_brat= (int)(Robot.ServoBrat.getPosition()*100);
-
-            if(pozitie_brat==95)
-                Robot.ServoBrat.setPosition(0.0);
-            else if(pozitie_brat==0)
-                Robot.ServoBrat.setPosition(0.95);
+        if(InTake>0)
+        {
+            robot.RightIntake.setPower(InTake);
+            robot.LeftIntake.setPower(InTake);
         }
-
+        else if(OutTake>0)
+        {
+            robot.RightIntake.setPower(-InTake);
+            robot.LeftIntake.setPower(-InTake);
+        }
+        else
+        {
+            robot.RightIntake.setPower(0);
+            robot.LeftIntake.setPower(0);
+        }
+        if(gamepad2.a)
+        {
+            robot.Bariera.setPosition(1);
+        }
+        if(gamepad2.b)
+        {
+            robot.Bariera.setPosition(0);
+        }
+        if(gamepad2.x)
+        {
+            robot.Impingere.setPosition(1);
+        }
+        if(gamepad2.y)
+        {
+            robot.Impingere.setPosition(0);
+        }
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
-        telemetry.addData("Servo Brat: ", Robot.ServoBrat.getPosition());
-        telemetry.addData("TimpBrat",TimpBrat);
-        telemetry.addData("TimpBariera",TimpBariera);
-        telemetry.update();
     }
 
     /*
@@ -178,11 +161,6 @@ public class TeleOpSponsori extends OpMode {
      */
     @Override
     public void stop() {
-        Robot.StopMovementMotors();
-        Robot.StopIntakeMotors();
     }
-
-
-
 
 }
