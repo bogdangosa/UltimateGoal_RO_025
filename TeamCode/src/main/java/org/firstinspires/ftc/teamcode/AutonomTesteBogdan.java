@@ -40,6 +40,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.HardwareMapTesteBogdan;
+import static org.firstinspires.ftc.teamcode.HardwareMapTesteBogdan.COUNTS_PER_MM;
+import static org.firstinspires.ftc.teamcode.HardwareMapTesteBogdan.DriveValue;
 
 
 /**
@@ -71,38 +73,61 @@ public class AutonomTesteBogdan extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
+        // Initializam robot
         Robot.init(hardwareMap);
 
+        // Initializam encoderele
+        Robot.InitEncoders();
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         runtime.reset();
 
-        while (opModeIsActive()){
-            telemetry.addData("Servo180: ", "(%.2f)",Robot.ServoTest180.getPosition());
+        if(opModeIsActive()){
+            DeplasareEncoders(0.7,500);
 
-            if(Robot.TouchSenzor.getState()){
-                telemetry.addData("TouchSenzor", "TRUE");
-                telemetry.update();
-                Robot.ServoTest180.setPosition(0.8);
-                sleep(2000);
-                telemetry.addData("Am AJuns Aici", "TRUE");
-                telemetry.update();
-                Robot.ServoTest360.setPosition(SERVO_HOME);
-                sleep(2000);
-            }
-            else {
-                telemetry.addData("TouchSenzor", "FALSE");
-                telemetry.update();
-            }
 
 
         }
 
 
 
+
     }
 
+    public void DeplasareTimp(long Time,double PowerLeft,double PowerRight){
+        Robot.RunMovementMotors(PowerRight,PowerLeft);
+        sleep(Time);
+        Robot.StopMovementMotors();
+    }
+    public void IntakeTime(long Time,double direction){
+        Robot.Intake(direction);
+        sleep(Time);
+        Robot.StopIntakeMotors();
+    }
 
+    public void DeplasareEncoders(double Power,double distance){
+
+        int RightBackTarget = Robot.RightBackMotor.getCurrentPosition() + (int)(distance * COUNTS_PER_MM * DriveValue);
+        int RightFrontTarget = Robot.RightFrontMotor.getCurrentPosition() + (int)(distance * COUNTS_PER_MM * DriveValue);
+        int LeftBackTarget = Robot.LeftBackMotor.getCurrentPosition() + (int)(distance * COUNTS_PER_MM * DriveValue);
+        int LeftFrontTarget = Robot.LeftFrontMotor.getCurrentPosition() + (int)(distance * COUNTS_PER_MM * DriveValue);
+
+        Robot.RunToPositionMode(RightBackTarget,RightFrontTarget,LeftBackTarget,LeftFrontTarget);
+
+        Robot.RunMovementMotors(Power,Power);
+        while(opModeIsActive() && Robot.VerifMovementMotors() ){
+            //loop pana ajunge la pozitia dorita
+        }
+
+        Robot.StopMovementMotors();
+
+        Robot.RightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Robot.RightBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Robot.LeftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Robot.LeftBackMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+    }
+    
 
 }

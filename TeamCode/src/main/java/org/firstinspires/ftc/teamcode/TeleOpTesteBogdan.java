@@ -37,6 +37,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import static org.firstinspires.ftc.teamcode.HardwareMapTesteBogdan.PUTERE_DEPLASARE_MAX;
+
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
  * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
@@ -111,8 +113,8 @@ public class TeleOpTesteBogdan extends OpMode {
         double strafeLeft = gamepad1.left_trigger;
 
         // Setam puterea
-        rightPower = Range.clip(drive - turn,-1.0,1.0);
-        leftPower = Range.clip(drive + turn,-1.0,1.0);
+        rightPower = Range.clip(drive - turn,-PUTERE_DEPLASARE_MAX,PUTERE_DEPLASARE_MAX);
+        leftPower = Range.clip(drive + turn,-PUTERE_DEPLASARE_MAX,PUTERE_DEPLASARE_MAX);
 
 
         // Ne deplasam in ce directie s-a apasat pe controller
@@ -133,7 +135,9 @@ public class TeleOpTesteBogdan extends OpMode {
 
         // Controlare Bariera
         if(gamepad2.x && Robot.GetRuntimeAsDouble(runtime) > TimpBariera + 2 ){
+
             TimpBariera = Robot.GetRuntimeAsDouble(runtime);
+
             int pozitie_bariera= (int)(Robot.ServoBariera.getPosition()*100);
 
             if(pozitie_bariera==50)
@@ -144,7 +148,9 @@ public class TeleOpTesteBogdan extends OpMode {
 
         //Controlare Brat
         if(gamepad2.y && Robot.GetRuntimeAsDouble(runtime) > TimpBrat + 2 ){
+
             TimpBrat = Robot.GetRuntimeAsDouble(runtime);
+
             int pozitie_brat= (int)(Robot.ServoBrat.getPosition()*100);
 
             if(pozitie_brat==95)
