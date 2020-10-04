@@ -21,11 +21,6 @@ public class ANA_Autonom extends LinearOpMode {
         waitForStart();
 
         /**     MERGE IN FATA   */
-        //robot.LeftFrontMotor.setTargetPosition(3000);
-        //robot.LeftBackMotor.setTargetPosition(3000);
-        //robot.RightFrontMotor.setTargetPosition(3000);
-        //robot.RightBackMotor.setTargetPosition(3000);
-
         robot.LeftFrontMotor.setPower(-0.7);
         robot.LeftBackMotor.setPower(-0.7);
         robot.RightFrontMotor.setPower(-0.7);
@@ -51,13 +46,13 @@ public class ANA_Autonom extends LinearOpMode {
         robot.RightFrontMotor.setPower(0);
         robot.RightBackMotor.setPower(0);
 
-        sleep(150);
+        sleep(250);
 
         /**     MERGE IN FATA   */
-        robot.LeftFrontMotor.setPower(-0,.7);
+        robot.LeftFrontMotor.setPower(-0.7);
         robot.LeftBackMotor.setPower(-0.7);
         robot.RightFrontMotor.setPower(-0.7);
-        robot.RightBackMotor.setPower(-0,7);
+        robot.RightBackMotor.setPower(-0.7);
 
         sleep(500);
 
@@ -66,7 +61,7 @@ public class ANA_Autonom extends LinearOpMode {
         robot.RightFrontMotor.setPower(0);
         robot.RightBackMotor.setPower(0);
 
-        sleep(200);
+        sleep(250);
 
         /**     COLECTEAZA CUB  */
         //robot.IntakeRight.setPower(0.8);
@@ -100,7 +95,7 @@ public class ANA_Autonom extends LinearOpMode {
         robot.RightFrontMotor.setPower(0);
         robot.RightBackMotor.setPower(0);
 
-        sleep(200);
+        sleep(250);
 
         /**     MERGE IN SPATE   */
         robot.LeftFrontMotor.setPower(10.7);
@@ -128,7 +123,7 @@ public class ANA_Autonom extends LinearOpMode {
         robot.RightFrontMotor.setPower(0);
         robot.RightBackMotor.setPower(0);
 
-        sleep(200);
+        sleep(250);
 
         /**     MERGE IN SPATE   */
         robot.LeftFrontMotor.setPower(0.7);

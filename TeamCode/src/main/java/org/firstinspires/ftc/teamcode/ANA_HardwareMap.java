@@ -78,7 +78,6 @@ public class ANA_HardwareMap
     public void init(HardwareMap ahwMap) {
         Ana_HWMap = ahwMap;
 
-
         LeftFrontMotor = Ana_HWMap.get(DcMotor.class, "LeftFrontMotor");
         LeftBackMotor = Ana_HWMap.get(DcMotor.class, "LeftBackMotor");
         RightFrontMotor = Ana_HWMap.get(DcMotor.class, "RightFrontMotor");
