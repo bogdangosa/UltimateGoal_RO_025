@@ -57,7 +57,7 @@ import static org.firstinspires.ftc.teamcode.HardwareMapTesteBogdan.DriveValue;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Autonom Teste", group="Linear Opmode")
+@Autonomous(name="Autonom Teste bogdan", group="Linear Opmode")
 //@Disabled
 public class AutonomTesteBogdan extends LinearOpMode {
 
@@ -84,10 +84,21 @@ public class AutonomTesteBogdan extends LinearOpMode {
         runtime.reset();
 
         if(opModeIsActive()){
-            DeplasareEncoders(0.7,500);
-
-
-
+            DeplasareTimp(1300,0.7,0.7);
+            sleep(200);
+            StrafeDreaptaTimp(1000,0.5);
+            sleep(200);
+            DeplasareTimp(850,0.5,-0.5);
+            sleep(200);
+            DeplasareTimp(500,0.7,0.7);
+            sleep(200);
+            StrafeDreaptaTimp(500,0.5);
+            Robot.Intake(-1);
+            DeplasareTimp(500,0.7,0.7);
+            sleep(400);
+            DeplasareTimp(850,0.5,-0.5);
+            sleep(200);
+            Robot.StopIntakeMotors();
         }
 
 
@@ -95,8 +106,19 @@ public class AutonomTesteBogdan extends LinearOpMode {
 
     }
 
-    public void DeplasareTimp(long Time,double PowerLeft,double PowerRight){
-        Robot.RunMovementMotors(PowerRight,PowerLeft);
+    public void DeplasareTimp(long Time,double PowerRight,double PowerLeft){
+        Robot.RunMovementMotors(-PowerRight,-PowerLeft);
+        sleep(Time);
+        Robot.StopMovementMotors();
+    }
+    public void StrafeDreaptaTimp(long Time,double Power){
+        Robot.StrafeMovementMotors(-Power);
+        sleep(Time);
+        Robot.StopMovementMotors();
+    }
+
+    public void StrafeStangaTimp(long Time,double Power){
+        Robot.StrafeMovementMotors(Power);
         sleep(Time);
         Robot.StopMovementMotors();
     }
