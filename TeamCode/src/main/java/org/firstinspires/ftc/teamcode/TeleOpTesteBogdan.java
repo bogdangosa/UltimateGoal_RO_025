@@ -126,15 +126,15 @@ public class TeleOpTesteBogdan extends OpMode {
             Robot.RunMovementMotors(rightPower,leftPower);
 
         /** Intake **/
-        if(gamepad2.a)
+        if(gamepad1.a)
             Robot.Intake(-1);
-        else if(gamepad2.b)
+        else if(gamepad1.b)
             Robot.Intake(1);
         else
             Robot.StopIntakeMotors();
-
+/*
         // Controlare Bariera
-        if(gamepad2.x && Robot.GetRuntimeAsDouble(runtime) > TimpBariera + 2 ){
+        if(gamepad2.x && Robot.GetRuntimeAsDouble(runtime) > TimpBariera + 1 ){
 
             TimpBariera = Robot.GetRuntimeAsDouble(runtime);
 
@@ -147,7 +147,7 @@ public class TeleOpTesteBogdan extends OpMode {
         }
 
         //Controlare Brat
-        if(gamepad2.y && Robot.GetRuntimeAsDouble(runtime) > TimpBrat + 2 ){
+        if(gamepad2.y && Robot.GetRuntimeAsDouble(runtime) > TimpBrat + 1 ){
 
             TimpBrat = Robot.GetRuntimeAsDouble(runtime);
 
@@ -158,6 +158,27 @@ public class TeleOpTesteBogdan extends OpMode {
             else if(pozitie_brat==0)
                 Robot.ServoBrat.setPosition(0.95);
         }
+
+        // codu asta va deschide bariera si va arunca cubul automatic
+        if(gamepad2.a && Robot.ServoBrat.getPosition()*100==95){
+            if(Robot.ServoBariera.getPosition()*100==0.0){
+                Robot.ServoBariera.setPosition(0.5);
+                MySleep(1.5);
+            }
+            Robot.ServoBrat.setPosition(0.0);
+            MySleep(1.5);
+            Robot.ServoBrat.setPosition(0.95);
+            Robot.ServoBariera.setPosition(0.0);
+        }*/
+
+        if(gamepad2.y)
+            Robot.ServoBrat.setPosition(0.0);
+        if(gamepad2.x)
+            Robot.ServoBrat.setPosition(0.95);
+        if(gamepad2.a)
+            Robot.ServoBariera.setPosition(0.0);
+        if(gamepad2.b)
+            Robot.ServoBariera.setPosition(0.5);
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
@@ -177,7 +198,12 @@ public class TeleOpTesteBogdan extends OpMode {
         Robot.StopIntakeMotors();
     }
 
-
+    public void MySleep(double time){
+        double curentTime = Robot.GetRuntimeAsDouble(runtime);
+        while(curentTime + time > Robot.GetRuntimeAsDouble(runtime)){
+            //wait for the time to pass
+        }
+    }
 
 
 }

@@ -164,17 +164,17 @@ public class HardwareMapTesteBogdan {
         LeftIntakeMotor.setPower(0);
     }
 
-    public void RunMovementMotors(double rightpower,double leftpower){
-        RightFrontMotor.setPower(rightpower);
-        RightBackMotor.setPower(rightpower);
-        LeftFrontMotor.setPower(leftpower);
-        LeftBackMotor.setPower(leftpower);
+    public void RunMovementMotors(double rightPower,double leftPower){
+        RightFrontMotor.setPower(rightPower);
+        RightBackMotor.setPower(rightPower);
+        LeftFrontMotor.setPower(leftPower);
+        LeftBackMotor.setPower(leftPower);
     }
     public void StrafeMovementMotors(double power){
-        RightFrontMotor.setPower(power);
-        RightBackMotor.setPower(-power);
-        LeftFrontMotor.setPower(-power);
-        LeftBackMotor.setPower(power);
+        RightFrontMotor.setPower(-power);
+        RightBackMotor.setPower(power);
+        LeftFrontMotor.setPower(power);
+        LeftBackMotor.setPower(-power);
     }
 
     public void Intake(double direction){
@@ -213,7 +213,7 @@ public class HardwareMapTesteBogdan {
 
     public double GetRuntimeAsDouble(ElapsedTime runtime){
         String Sruntime = runtime.toString();
-        Sruntime = Sruntime.substring(0,Sruntime.length()-7);
+        Sruntime = Sruntime.substring(0,Sruntime.length()-13)   ;
         return Double.parseDouble(Sruntime);
     }
 
