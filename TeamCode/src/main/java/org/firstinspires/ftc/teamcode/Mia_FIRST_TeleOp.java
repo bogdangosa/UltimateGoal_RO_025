@@ -125,8 +125,8 @@ public class Mia_FIRST_TeleOp extends OpMode
         }
         else if(OutTake>0)
         {
-            robot.RightIntake.setPower(-InTake);
-            robot.LeftIntake.setPower(-InTake);
+            robot.RightIntake.setPower(-OutTake);
+            robot.LeftIntake.setPower(-OutTake);
         }
         else
         {

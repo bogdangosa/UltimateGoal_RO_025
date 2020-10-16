@@ -29,10 +29,8 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -50,9 +48,9 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="ANA_TeleOP", group="Iterative Opmode")
+@TeleOp(name="ANA_TeleOP2", group="Iterative Opmode")
 //@Disabled
-public class ANA_TeleOP extends OpMode
+public class ANA_TeleOP2 extends OpMode
 {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -100,7 +98,7 @@ public class ANA_TeleOP extends OpMode
         double inTake = gamepad2.left_trigger;
         double outTake = gamepad2.right_trigger;
 
-        double drive = gamepad1.left_stick_y;
+        double drive = gamepad1.right_stick_y;
         double turn =  gamepad1.right_stick_x;
 
         rightPower = Range.clip(drive + turn,-1.0,1.0);
