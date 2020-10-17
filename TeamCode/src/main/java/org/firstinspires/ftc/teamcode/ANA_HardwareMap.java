@@ -109,7 +109,7 @@ public class ANA_HardwareMap
         IntakeRight.setPower(0);
 
         ServoBariera.setPosition(0);
-        ServoOutTake.setPosition(0);
+        ServoOutTake.setPosition(1);
 
     }
 }
