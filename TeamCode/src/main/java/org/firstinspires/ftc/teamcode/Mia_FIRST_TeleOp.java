@@ -87,15 +87,18 @@ public class Mia_FIRST_TeleOp extends OpMode
 
         double drive = gamepad1.right_stick_y;
         double turn = gamepad1.left_stick_x;
+
         double rightPower;
         double leftPower;
-        rightPower = Range.clip(drive+turn,-1,1);
-        leftPower  = Range.clip(drive-turn,-1,1);
 
         double RightStrafe = gamepad1.right_trigger;
         double LeftStrafe = gamepad1.left_trigger;
+
         double InTake = gamepad2.right_trigger;
         double OutTake = gamepad2.left_trigger;
+
+        rightPower = Range.clip(drive + turn,-1.0,1.0);
+        leftPower  = Range.clip(drive - turn,-1.0,1.0);
 
         if(RightStrafe>0)
         {
@@ -125,8 +128,8 @@ public class Mia_FIRST_TeleOp extends OpMode
         }
         else if(OutTake>0)
         {
-            robot.RightIntake.setPower(-InTake);
-            robot.LeftIntake.setPower(-InTake);
+            robot.RightIntake.setPower(-OutTake);
+            robot.LeftIntake.setPower(-OutTake);
         }
         else
         {
