@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -75,8 +76,10 @@ public class HardwareMapTesteBogdan {
     public Servo ServoBariera = null;
     public Servo ServoBrat = null;
 
+
+
     //Declarare HardwareMap
-    HardwareMap HWM_Sponsori  =  null;
+    HardwareMap HWM_Teste_Bogdan  =  null;
 
     // Declarare constante
 
@@ -95,24 +98,24 @@ public class HardwareMapTesteBogdan {
     /*  Initializare HardwareMap  */
 
     public void init(HardwareMap ahwMap){
-        HWM_Sponsori = ahwMap;
+        HWM_Teste_Bogdan = ahwMap;
 
         // Initializare Motoare de Deplasare
 
-        RightBackMotor = HWM_Sponsori.get(DcMotor.class,"RightBackMotor");
-        RightFrontMotor = HWM_Sponsori.get(DcMotor.class,"RightFrontMotor");
-        LeftBackMotor  = HWM_Sponsori.get(DcMotor.class, "LeftBackMotor");
-        LeftFrontMotor = HWM_Sponsori.get(DcMotor.class, "LeftFrontMotor");
+        RightBackMotor = HWM_Teste_Bogdan.get(DcMotor.class,"RightBackMotor");
+        RightFrontMotor = HWM_Teste_Bogdan.get(DcMotor.class,"RightFrontMotor");
+        LeftBackMotor  = HWM_Teste_Bogdan.get(DcMotor.class, "LeftBackMotor");
+        LeftFrontMotor = HWM_Teste_Bogdan.get(DcMotor.class, "LeftFrontMotor");
 
         // Initializare Motoare pentru Intake
 
-        RightIntakeMotor=HWM_Sponsori.get(DcMotor.class,"RightIntakeMotor");
-        LeftIntakeMotor=HWM_Sponsori.get(DcMotor.class,"LeftIntakeMotor");
+        RightIntakeMotor=HWM_Teste_Bogdan.get(DcMotor.class,"RightIntakeMotor");
+        LeftIntakeMotor=HWM_Teste_Bogdan.get(DcMotor.class,"LeftIntakeMotor");
 
         // Initializare Servouri
 
-        ServoBariera = HWM_Sponsori.get(Servo.class,"ServoBariera");
-        ServoBrat = HWM_Sponsori.get(Servo.class,"ServoBrat");
+        ServoBariera = HWM_Teste_Bogdan.get(Servo.class,"ServoBariera");
+        ServoBrat = HWM_Teste_Bogdan.get(Servo.class,"ServoBrat");
 
         // Seteaza directia Motoarelor de Deplasare
 
@@ -145,6 +148,7 @@ public class HardwareMapTesteBogdan {
         RightBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         LeftFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         LeftBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
 
     }
