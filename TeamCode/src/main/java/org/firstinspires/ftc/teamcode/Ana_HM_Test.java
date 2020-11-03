@@ -29,16 +29,16 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import android.app.Activity;
+import android.view.View;
+
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
@@ -54,7 +54,7 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-public class ANA_HardwareMap
+public class Ana_HM_Test
 {
     //MOTOARE DEPLASARE
     public DcMotor LeftFrontMotor = null;
@@ -70,10 +70,11 @@ public class ANA_HardwareMap
     public Servo ServoBariera = null;
     public Servo ServoOutTake = null;
 
-    //DigitalChannel TouchSensor;
+    ColorSensor culoare;
+    DistanceSensor distanta;
 
     HardwareMap Ana_HWMap =  null;
-    public ANA_HardwareMap() {
+    public Ana_HM_Test() {
 
     }
 
@@ -91,8 +92,12 @@ public class ANA_HardwareMap
         ServoBariera = Ana_HWMap.get(Servo.class, "ServoBariera");
         ServoOutTake = Ana_HWMap.get(Servo.class, "ServoOutTake");
 
-        // TouchSensor = Ana_HWMap.get(DigitalChannel.class,"TouchSensor");
-        //TouchSensor.setMode(DigitalChannel.Mode.INPUT);
+        culoare = Ana_HWMap.get(ColorSensor.class, "sensorColor");
+        distanta = Ana_HWMap.get(DistanceSensor.class, "sensorDistance");
+
+        int relativeLayoutId = Ana_HWMap.appContext.getResources().getIdentifier("RelativeLayout", "id", Ana_HWMap.appContext.getPackageName());
+        final View relativeLayout = ((Activity) Ana_HWMap.appContext).findViewById(relativeLayoutId);
+
         /** Setez directia */
         LeftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
         LeftBackMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -101,6 +106,7 @@ public class ANA_HardwareMap
 
         IntakeRight.setDirection(DcMotor.Direction.FORWARD);
         IntakeLeft.setDirection(DcMotor.Direction.REVERSE);
+
 
 
         /** Setez motoarele la 0 */
