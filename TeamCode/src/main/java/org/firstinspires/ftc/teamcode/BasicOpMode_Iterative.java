@@ -29,8 +29,10 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -48,19 +50,34 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Mia_FIRST_TeleOp", group="Iterative Opmode")
-
-public class Mia_FIRST_TeleOp extends OpMode
+@TeleOp(name="Basic: Iterative OpMode", group="Iterative Opmode")
+@Disabled
+public class BasicOpMode_Iterative extends OpMode
 {
-
+    // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-    Mia_FIRST_HardwareMap robot = new Mia_FIRST_HardwareMap();
+    private DcMotor leftDrive = null;
+    private DcMotor rightDrive = null;
 
+    /*
+     * Code to run ONCE when the driver hits INIT
+     */
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
 
-        robot.init(hardwareMap);
+        // Initialize the hardware variables. Note that the strings used here as parameters
+        // to 'get' must correspond to the names assigned during the robot configuration
+        // step (using the FTC Robot Controller app on the phone).
+        leftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
+        rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
+
+        // Most robots need the motor on one side to be reversed to drive forward
+        // Reverse the motor that runs backwards when connected directly to the battery
+        leftDrive.setDirection(DcMotor.Direction.FORWARD);
+        rightDrive.setDirection(DcMotor.Direction.REVERSE);
+
+        // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
     }
 
@@ -84,74 +101,29 @@ public class Mia_FIRST_TeleOp extends OpMode
      */
     @Override
     public void loop() {
-
-        double drive = gamepad1.right_stick_y;
-        double turn = gamepad1.left_stick_x;
-
-        double rightPower;
+        // Setup a variable for each drive wheel to save power level for telemetry
         double leftPower;
+        double rightPower;
 
-        double RightStrafe = gamepad1.right_trigger;
-        double LeftStrafe = gamepad1.left_trigger;
+        // Choose to drive using either Tank Mode, or POV Mode
+        // Comment out the method that's not used.  The default below is POV.
 
-        double InTake = gamepad2.right_trigger;
-        double OutTake = gamepad2.left_trigger;
+        // POV Mode uses left stick to go forward, and right stick to turn.
+        // - This uses basic math to combine motions and is easier to drive straight.
+        double drive = -gamepad1.left_stick_y;
+        double turn  =  gamepad1.right_stick_x;
+        leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
+        rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
-        rightPower = Range.clip(drive + turn,-1.0,1.0);
-        leftPower  = Range.clip(drive - turn,-1.0,1.0);
+        // Tank Mode uses one stick to control each wheel.
+        // - This requires no math, but it is hard to drive forward slowly and keep straight.
+        // leftPower  = -gamepad1.left_stick_y ;
+        // rightPower = -gamepad1.right_stick_y ;
 
-        if(RightStrafe>0)
-        {
-            robot.RightFrontMotor.setPower(RightStrafe);
-            robot.RightBackMotor.setPower(-RightStrafe);
-            robot.LeftFrontMotor.setPower(-RightStrafe);
-            robot.LeftBackMotor.setPower(RightStrafe);
-        }
-        else if(LeftStrafe>0)
-        {
-            robot.RightFrontMotor.setPower(-LeftStrafe);
-            robot.RightBackMotor.setPower(LeftStrafe);
-            robot.LeftFrontMotor.setPower(LeftStrafe);
-            robot.LeftBackMotor.setPower(-LeftStrafe);
-        }
-        else
-        {
-            robot.RightFrontMotor.setPower(rightPower);
-            robot.RightBackMotor.setPower(rightPower);
-            robot.LeftFrontMotor.setPower(leftPower);
-            robot.LeftBackMotor.setPower(leftPower);
-        }
-        if(InTake>0)
-        {
-            robot.RightIntake.setPower(InTake);
-            robot.LeftIntake.setPower(InTake);
-        }
-        else if(OutTake>0)
-        {
-            robot.RightIntake.setPower(-OutTake);
-            robot.LeftIntake.setPower(-OutTake);
-        }
-        else
-        {
-            robot.RightIntake.setPower(0);
-            robot.LeftIntake.setPower(0);
-        }
-        if(gamepad2.a)
-        {
-            robot.Bariera.setPosition(1);
-        }
-        if(gamepad2.b)
-        {
-            robot.Bariera.setPosition(0);
-        }
-        if(gamepad2.x)
-        {
-            robot.Impingere.setPosition(1);
-        }
-        if(gamepad2.y)
-        {
-            robot.Impingere.setPosition(0);
-        }
+        // Send calculated power to wheels
+        leftDrive.setPower(leftPower);
+        rightDrive.setPower(rightPower);
+
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
@@ -162,11 +134,6 @@ public class Mia_FIRST_TeleOp extends OpMode
      */
     @Override
     public void stop() {
-        robot.LeftBackMotor.setPower(0);
-        robot.LeftFrontMotor.setPower(0);
-        robot.RightBackMotor.setPower(0);
-        robot.LeftIntake.setPower(0);
-        robot.RightIntake.setPower(0);
     }
 
 }
