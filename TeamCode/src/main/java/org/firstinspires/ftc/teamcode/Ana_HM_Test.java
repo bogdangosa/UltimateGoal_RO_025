@@ -40,6 +40,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
+import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.FORWARD;
+import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.REVERSE;
+
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
  * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
@@ -59,6 +62,10 @@ public class Ana_HM_Test
     ColorSensor color;
     DigitalChannel touch;
     public Servo servo= null;
+    public DcMotor RightFrontMotor = null;
+    public DcMotor RightBackMotor = null;
+    public DcMotor LeftFrontMotor = null;
+    public DcMotor LeftBackMotor = null;
 
     HardwareMap Ana_HM_Test =  null;
 
@@ -72,6 +79,19 @@ public class Ana_HM_Test
 
         color = Ana_HM_Test.get(ColorSensor.class, "color");
         color = Ana_HM_Test.colorSensor.get("color");
+        RightBackMotor=Ana_HM_Test.get(DcMotor.class, "RightBackMotor");
+        RightFrontMotor=Ana_HM_Test.get(DcMotor.class, "RightFrontMotor");
+        LeftFrontMotor=Ana_HM_Test.get(DcMotor.class, "LeftFrontMotor");
+        LeftBackMotor=Ana_HM_Test.get(DcMotor.class, "LeftBackMotor");
 
+        RightBackMotor.setDirection(REVERSE);
+        RightFrontMotor.setDirection(REVERSE);
+        LeftBackMotor.setDirection(FORWARD);
+        LeftFrontMotor.setDirection(FORWARD);
+
+        RightBackMotor.setPower(0);
+        RightFrontMotor.setPower(0);
+        LeftFrontMotor.setPower(0);
+        LeftBackMotor.setPower(0);
     }
 }
