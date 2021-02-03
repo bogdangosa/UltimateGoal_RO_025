@@ -56,70 +56,22 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 
 public class Ana_HM_Test
 {
-    //MOTOARE DEPLASARE
-    public DcMotor LeftFrontMotor = null;
-    public DcMotor LeftBackMotor = null;
-    public DcMotor RightFrontMotor = null;
-    public DcMotor RightBackMotor = null;
+    ColorSensor color;
+    DigitalChannel touch;
+    public Servo servo= null;
 
-    //MOTOARE INTAKE
-    public DcMotor IntakeLeft = null;
-    public DcMotor IntakeRight = null;
-
-    //SERVO-URI
-    public Servo ServoBariera = null;
-    public Servo ServoOutTake = null;
-
-    ColorSensor culoare;
-    DistanceSensor distanta;
-
-    HardwareMap Ana_HWMap =  null;
-    public Ana_HM_Test() {
-
-    }
+    HardwareMap Ana_HM_Test =  null;
 
     public void init(HardwareMap ahwMap) {
-        Ana_HWMap = ahwMap;
+        Ana_HM_Test = ahwMap;
 
-        LeftFrontMotor = Ana_HWMap.get(DcMotor.class, "LeftFrontMotor");
-        LeftBackMotor = Ana_HWMap.get(DcMotor.class, "LeftBackMotor");
-        RightFrontMotor = Ana_HWMap.get(DcMotor.class, "RightFrontMotor");
-        RightBackMotor = Ana_HWMap.get(DcMotor.class, "RightBackMotor");
+        servo = Ana_HM_Test.get(Servo.class, "servo");
 
-        IntakeLeft = Ana_HWMap.get(DcMotor.class, "IntakeLeft");
-        IntakeRight = Ana_HWMap.get(DcMotor.class, "IntakeRight");
+        touch = Ana_HM_Test.get(DigitalChannel.class, "touch");
+        touch.setMode(DigitalChannel.Mode.INPUT);
 
-        ServoBariera = Ana_HWMap.get(Servo.class, "ServoBariera");
-        ServoOutTake = Ana_HWMap.get(Servo.class, "ServoOutTake");
-
-        culoare = Ana_HWMap.get(ColorSensor.class, "sensorColor");
-        distanta = Ana_HWMap.get(DistanceSensor.class, "sensorDistance");
-
-        int relativeLayoutId = Ana_HWMap.appContext.getResources().getIdentifier("RelativeLayout", "id", Ana_HWMap.appContext.getPackageName());
-        final View relativeLayout = ((Activity) Ana_HWMap.appContext).findViewById(relativeLayoutId);
-
-        /** Setez directia */
-        LeftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        LeftBackMotor.setDirection(DcMotor.Direction.FORWARD);
-        RightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
-        RightBackMotor.setDirection(DcMotor.Direction.REVERSE);
-
-        IntakeRight.setDirection(DcMotor.Direction.FORWARD);
-        IntakeLeft.setDirection(DcMotor.Direction.REVERSE);
-
-
-
-        /** Setez motoarele la 0 */
-        LeftFrontMotor.setPower(0);
-        LeftBackMotor.setPower(0);
-        RightFrontMotor.setPower(0);
-        RightBackMotor.setPower(0);
-
-        IntakeLeft.setPower(0);
-        IntakeRight.setPower(0);
-
-        ServoBariera.setPosition(0);
-        ServoOutTake.setPosition(1);
+        color = Ana_HM_Test.get(ColorSensor.class, "color");
+        color = Ana_HM_Test.colorSensor.get("color");
 
     }
 }
