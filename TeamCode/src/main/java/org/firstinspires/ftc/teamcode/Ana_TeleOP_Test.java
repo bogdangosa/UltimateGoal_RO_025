@@ -19,14 +19,17 @@ public class Ana_TeleOP_Test extends OpMode {
     @Override
     public void loop()
     {
+        /*
         double drive = gamepad1.right_stick_y;
         double turn = gamepad1.left_stick_x;
 
         double rightPower;
         double leftPower;
 
-        double RightStrafe = gamepad1.right_trigger;
-        double LeftStrafe = gamepad1.left_trigger;
+        double RightStrafe = gamepad1.right_trigger-0.2;
+        double LeftStrafe = gamepad1.left_trigger-0.2;
+
+        // nu conteaza culoarea, aranjam ca rosu tot
 
         rightPower = Range.clip(drive + turn,-1.0,1.0);
         leftPower  = Range.clip(drive - turn,-1.0,1.0);
@@ -68,10 +71,13 @@ public class Ana_TeleOP_Test extends OpMode {
         {
             robot.servo.setPosition(1);
         }
-        telemetry.addData("red", robot.color.red());
-        telemetry.addData("green", robot.color.green());
-        telemetry.addData("blue", robot.color.blue());
-        telemetry.addData("alpha", robot.color.alpha());
+*/
+        //telemetry.addData("red", robot.color.red());
+        //telemetry.addData("green", robot.color.green());
+        //telemetry.addData("blue", robot.color.blue());
+        //telemetry.addData("alpha", robot.color.alpha());
+        telemetry.addData("argb", robot.color1.argb());
+        telemetry.addData("argb", robot.color2.argb());
         telemetry.update();
     }
 

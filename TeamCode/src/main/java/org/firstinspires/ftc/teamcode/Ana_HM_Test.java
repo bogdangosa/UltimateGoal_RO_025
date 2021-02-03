@@ -59,9 +59,9 @@ import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.REVERSE;
 
 public class Ana_HM_Test
 {
-    ColorSensor color;
-    DigitalChannel touch;
-    public Servo servo= null;
+    ColorSensor color1;
+    ColorSensor color2;
+
     public DcMotor RightFrontMotor = null;
     public DcMotor RightBackMotor = null;
     public DcMotor LeftFrontMotor = null;
@@ -72,13 +72,12 @@ public class Ana_HM_Test
     public void init(HardwareMap ahwMap) {
         Ana_HM_Test = ahwMap;
 
-        servo = Ana_HM_Test.get(Servo.class, "servo");
+        color1 = Ana_HM_Test.get(ColorSensor.class, "color1");
+        color1 = Ana_HM_Test.colorSensor.get("color1");
 
-        touch = Ana_HM_Test.get(DigitalChannel.class, "touch");
-        touch.setMode(DigitalChannel.Mode.INPUT);
+        color2 = Ana_HM_Test.get(ColorSensor.class, "color2");
+        color2 = Ana_HM_Test.colorSensor.get("color2");
 
-        color = Ana_HM_Test.get(ColorSensor.class, "color");
-        color = Ana_HM_Test.colorSensor.get("color");
         RightBackMotor=Ana_HM_Test.get(DcMotor.class, "RightBackMotor");
         RightFrontMotor=Ana_HM_Test.get(DcMotor.class, "RightFrontMotor");
         LeftFrontMotor=Ana_HM_Test.get(DcMotor.class, "LeftFrontMotor");
@@ -93,5 +92,6 @@ public class Ana_HM_Test
         RightFrontMotor.setPower(0);
         LeftFrontMotor.setPower(0);
         LeftBackMotor.setPower(0);
+
     }
 }
