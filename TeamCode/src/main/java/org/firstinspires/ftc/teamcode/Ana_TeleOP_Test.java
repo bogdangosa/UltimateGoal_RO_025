@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
 @TeleOp (name="Ana_TeleOP_Test")
 public class Ana_TeleOP_Test extends OpMode {
 
@@ -14,12 +16,23 @@ public class Ana_TeleOP_Test extends OpMode {
     public void init()
     {
         robot.init(hardwareMap);
+
+        telemetry.clear(); telemetry.update();
+
+        // Wait for the start button to be pressed
+        telemetry.log().clear();
+        telemetry.log().add("Press A & B to reset heading");
+
     }
 
     @Override
     public void loop()
     {
-        /*
+
+        // during the initialization phase at the start of each opMode.
+        telemetry.log().add("Gyro Calibrating. Do Not Move!");
+        robot.modernRoboticsI2cGyro.calibrate();
+/*
         double drive = gamepad1.right_stick_y;
         double turn = gamepad1.left_stick_x;
 
@@ -60,25 +73,34 @@ public class Ana_TeleOP_Test extends OpMode {
         if(gamepad1.b==true)
             robot.servo.setPosition(0);
 
-        if (robot.touch.getState() == true) {
-            telemetry.addData("Digital Touch", "Is Not Pressed");
-        }
-        else {
-            telemetry.addData("Digital Touch", "Is Pressed");
-        }
-
-        if(robot.color.red() > robot.color.blue()  && robot.color.red() == robot.color.green())
+        if(robot.color1.argb() > 37000000)
         {
             robot.servo.setPosition(1);
         }
-*/
-        //telemetry.addData("red", robot.color.red());
-        //telemetry.addData("green", robot.color.green());
-        //telemetry.addData("blue", robot.color.blue());
-        //telemetry.addData("alpha", robot.color.alpha());
-        telemetry.addData("argb", robot.color1.argb());
-        telemetry.addData("argb", robot.color2.argb());
+
+        if(robot.distance.getDistance(DistanceUnit.CM) < 7)
+        {
+            robot.servo.setPosition(0);
+        }
+
+        telemetry.addData("red1", robot.color1.red());
+        telemetry.addData("green1", robot.color1.green());
+        telemetry.addData("blue1", robot.color1.blue());
+        telemetry.addData("alpha1", robot.color1.alpha());
+
+
+        telemetry.addData("argb1", robot.color1.argb());
+        telemetry.addData("argb2", robot.color2.argb());
+
+        telemetry.addData("red2", robot.color2.red());
+        telemetry.addData("green2", robot.color2.green());
+        telemetry.addData("blue2", robot.color2.blue());
+        telemetry.addData("alpha2", robot.color2.alpha());
+
+        telemetry.addData("distanta:", robot.distance.getDistance(DistanceUnit.CM));
+
         telemetry.update();
+        */
     }
 
     @Override

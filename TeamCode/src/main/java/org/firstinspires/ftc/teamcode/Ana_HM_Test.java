@@ -32,11 +32,14 @@ package org.firstinspires.ftc.teamcode;
 import android.app.Activity;
 import android.view.View;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
@@ -57,26 +60,43 @@ import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.REVERSE;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-public class Ana_HM_Test
+public class   Ana_HM_Test
 {
+    /*
     ColorSensor color1;
     ColorSensor color2;
+
+    DistanceSensor distance;
+
+    public Servo servo= null;
 
     public DcMotor RightFrontMotor = null;
     public DcMotor RightBackMotor = null;
     public DcMotor LeftFrontMotor = null;
     public DcMotor LeftBackMotor = null;
 
+     */
+
+    IntegratingGyroscope gyro;
+    ModernRoboticsI2cGyro modernRoboticsI2cGyro;
+
     HardwareMap Ana_HM_Test =  null;
 
     public void init(HardwareMap ahwMap) {
         Ana_HM_Test = ahwMap;
 
+        modernRoboticsI2cGyro = Ana_HM_Test.get(ModernRoboticsI2cGyro.class, "gyro");
+        gyro = (IntegratingGyroscope)modernRoboticsI2cGyro;
+/*
         color1 = Ana_HM_Test.get(ColorSensor.class, "color1");
         color1 = Ana_HM_Test.colorSensor.get("color1");
 
         color2 = Ana_HM_Test.get(ColorSensor.class, "color2");
         color2 = Ana_HM_Test.colorSensor.get("color2");
+
+        servo = Ana_HM_Test.get(Servo.class, "servo");
+
+        distance = Ana_HM_Test.get(DistanceSensor.class, "distance");
 
         RightBackMotor=Ana_HM_Test.get(DcMotor.class, "RightBackMotor");
         RightFrontMotor=Ana_HM_Test.get(DcMotor.class, "RightFrontMotor");
@@ -93,5 +113,8 @@ public class Ana_HM_Test
         LeftFrontMotor.setPower(0);
         LeftBackMotor.setPower(0);
 
+        servo.setPosition(1);
+
+ */
     }
 }
