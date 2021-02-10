@@ -49,124 +49,23 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @TeleOp(name="ANA_TeleOP2", group="Iterative Opmode")
-//@Disabled
 public class ANA_TeleOP2 extends OpMode
 {
-    // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     ANA_HardwareMap robot = new ANA_HardwareMap();
-    /*
-     * Code to run ONCE when the driver hits INIT
-     */
     @Override
     public void init() {
         telemetry.addData("Status", "Before Initialization");
 
         robot.init(hardwareMap);
 
-        // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
     }
 
-    /*
-     * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
-     */
     @Override
-    public void init_loop() {
+    public void loop()
+    {
+        robot.servo.setPosition(gamepad1.right_trigger);
+        telemetry.update();
     }
-
-    /*
-     * Code to run ONCE when the driver hits PLAY
-     */
-    @Override
-    public void start() {
-        runtime.reset();
-    }
-
-    /*
-     * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
-     */
-    @Override
-    public void loop() {
-        // Setup a variable for each drive wheel to save power level for telemetry
-        double rightPower;
-        double leftPower;
-
-        double strafeRight = gamepad1.right_trigger;
-        double strafeLeft = gamepad1.left_trigger;
-
-        double inTake = gamepad2.left_trigger;
-        double outTake = gamepad2.right_trigger;
-
-        double drive = gamepad1.right_stick_y;
-        double turn =  gamepad1.right_stick_x;
-
-        rightPower = Range.clip(drive + turn,-1.0,1.0);
-        leftPower = Range.clip(drive - turn,-1.0,1.0);
-
-        if (strafeRight>0)
-        {
-            robot.LeftFrontMotor.setPower(-strafeRight);
-            robot.LeftBackMotor.setPower(strafeRight);
-            robot.RightFrontMotor.setPower(strafeRight);
-            robot.RightBackMotor.setPower(-strafeRight);
-        }
-        else if (strafeLeft>0)
-        {
-            robot.LeftFrontMotor.setPower(strafeLeft);
-            robot.LeftBackMotor.setPower(-strafeLeft);
-            robot.RightFrontMotor.setPower(-strafeLeft);
-            robot.RightBackMotor.setPower(strafeLeft);
-        }
-        else
-        {
-            robot.LeftFrontMotor.setPower(leftPower);
-            robot.LeftBackMotor.setPower(leftPower);
-            robot.RightFrontMotor.setPower(rightPower);
-            robot.RightBackMotor.setPower(rightPower);
-        }
-
-        if (inTake>0)
-        {
-            robot.IntakeLeft.setPower(inTake);
-            robot.IntakeRight.setPower(inTake);
-        }
-        else if (outTake>0)
-        {
-            robot.IntakeLeft.setPower(-outTake);
-            robot.IntakeRight.setPower(-outTake);
-        }
-        else
-        {
-            robot.IntakeLeft.setPower(0);
-            robot.IntakeRight.setPower(0);
-        }
-
-        if(gamepad2.a)
-            robot.ServoOutTake.setPosition(1);
-        if(gamepad2.b)
-            robot.ServoOutTake.setPosition(0);
-
-        if(gamepad2.x)
-            robot.ServoBariera.setPosition(1);
-        if(gamepad2.y)
-            robot.ServoBariera.setPosition(0);
-
-
-
-
-        // Show the elapsed game time and wheel power.
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
-
-
-    }
-
-    /*
-     * Code to run ONCE after the driver hits STOP
-     */
-    @Override
-    public void stop() {
-    }
-
 }

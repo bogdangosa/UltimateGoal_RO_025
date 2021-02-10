@@ -106,55 +106,6 @@ public class ANA_TeleOP extends OpMode
         rightPower = Range.clip(drive + turn,-1.0,1.0);
         leftPower = Range.clip(drive - turn,-1.0,1.0);
 
-        if (strafeRight>0)
-        {
-            robot.LeftFrontMotor.setPower(-strafeRight);
-            robot.LeftBackMotor.setPower(strafeRight);
-            robot.RightFrontMotor.setPower(strafeRight);
-            robot.RightBackMotor.setPower(-strafeRight);
-        }
-        else if (strafeLeft>0)
-        {
-            robot.LeftFrontMotor.setPower(strafeLeft);
-            robot.LeftBackMotor.setPower(-strafeLeft);
-            robot.RightFrontMotor.setPower(-strafeLeft);
-            robot.RightBackMotor.setPower(strafeLeft);
-        }
-        else
-        {
-            robot.LeftFrontMotor.setPower(leftPower);
-            robot.LeftBackMotor.setPower(leftPower);
-            robot.RightFrontMotor.setPower(rightPower);
-            robot.RightBackMotor.setPower(rightPower);
-        }
-
-        if (inTake>0)
-        {
-            robot.IntakeLeft.setPower(inTake);
-            robot.IntakeRight.setPower(inTake);
-        }
-        else if (outTake>0)
-        {
-            robot.IntakeLeft.setPower(-outTake);
-            robot.IntakeRight.setPower(-outTake);
-        }
-        else
-        {
-            robot.IntakeLeft.setPower(0);
-            robot.IntakeRight.setPower(0);
-        }
-
-        if(gamepad2.a)
-            robot.ServoOutTake.setPosition(1);
-        if(gamepad2.b)
-            robot.ServoOutTake.setPosition(0);
-
-        if(gamepad2.x)
-            robot.ServoBariera.setPosition(1);
-        if(gamepad2.y)
-            robot.ServoBariera.setPosition(0);
-
-
 
 
         // Show the elapsed game time and wheel power.

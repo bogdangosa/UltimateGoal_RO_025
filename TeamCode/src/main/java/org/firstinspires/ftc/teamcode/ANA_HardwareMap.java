@@ -56,21 +56,7 @@ import com.qualcomm.robotcore.util.Range;
 
 public class ANA_HardwareMap
 {
-    //MOTOARE DEPLASARE
-    public DcMotor LeftFrontMotor = null;
-    public DcMotor LeftBackMotor = null;
-    public DcMotor RightFrontMotor = null;
-    public DcMotor RightBackMotor = null;
-
-    //MOTOARE INTAKE
-    public DcMotor IntakeLeft = null;
-    public DcMotor IntakeRight = null;
-
-    //SERVO-URI
-    public Servo ServoBariera = null;
-    public Servo ServoOutTake = null;
-
-    //DigitalChannel TouchSensor;
+    public Servo servo = null;
 
     HardwareMap Ana_HWMap =  null;
     public ANA_HardwareMap() {
@@ -80,40 +66,7 @@ public class ANA_HardwareMap
     public void init(HardwareMap ahwMap) {
         Ana_HWMap = ahwMap;
 
-        LeftFrontMotor = Ana_HWMap.get(DcMotor.class, "LeftFrontMotor");
-        LeftBackMotor = Ana_HWMap.get(DcMotor.class, "LeftBackMotor");
-        RightFrontMotor = Ana_HWMap.get(DcMotor.class, "RightFrontMotor");
-        RightBackMotor = Ana_HWMap.get(DcMotor.class, "RightBackMotor");
-
-        IntakeLeft = Ana_HWMap.get(DcMotor.class, "IntakeLeft");
-        IntakeRight = Ana_HWMap.get(DcMotor.class, "IntakeRight");
-
-        ServoBariera = Ana_HWMap.get(Servo.class, "ServoBariera");
-        ServoOutTake = Ana_HWMap.get(Servo.class, "ServoOutTake");
-
-        // TouchSensor = Ana_HWMap.get(DigitalChannel.class,"TouchSensor");
-        //TouchSensor.setMode(DigitalChannel.Mode.INPUT);
-        /** Setez directia */
-        LeftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        LeftBackMotor.setDirection(DcMotor.Direction.FORWARD);
-        RightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
-        RightBackMotor.setDirection(DcMotor.Direction.REVERSE);
-
-        IntakeRight.setDirection(DcMotor.Direction.FORWARD);
-        IntakeLeft.setDirection(DcMotor.Direction.REVERSE);
-
-
-        /** Setez motoarele la 0 */
-        LeftFrontMotor.setPower(0);
-        LeftBackMotor.setPower(0);
-        RightFrontMotor.setPower(0);
-        RightBackMotor.setPower(0);
-
-        IntakeLeft.setPower(0);
-        IntakeRight.setPower(0);
-
-        ServoBariera.setPosition(0);
-        ServoOutTake.setPosition(1);
-
+        servo= Ana_HWMap.get(Servo.class, "servo");
+        servo.setPosition(0);
     }
 }
