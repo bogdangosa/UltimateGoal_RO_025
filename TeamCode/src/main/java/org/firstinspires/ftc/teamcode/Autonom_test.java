@@ -37,9 +37,6 @@ public class Autonom_test extends LinearOpMode {
 
         if (robot.color1.argb() < 17000000 ) {
 
-            telemetry.addData("color1:", robot.color1.argb());
-            telemetry.addData("color1:", robot.color1.argb());
-
             robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(0.5);
             robot.LeftFrontMotor.setPower(0.5);
@@ -65,9 +62,6 @@ public class Autonom_test extends LinearOpMode {
             sleep(200);
         }
         else if(robot.color1.argb()>17000000 && robot.color2.argb()<17000000) {
-
-            telemetry.addData("color1:", robot.color1.argb());
-            telemetry.addData("color1:", robot.color1.argb());
 
             robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(0.5);
@@ -138,6 +132,5 @@ public class Autonom_test extends LinearOpMode {
         robot.LeftFrontMotor.setPower(0);
         robot.LeftBackMotor.setPower(0);
 
-        telemetry.update();
     }
 }
