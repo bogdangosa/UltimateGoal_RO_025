@@ -35,7 +35,11 @@ public class Autonom_test extends LinearOpMode {
         robot.LeftBackMotor.setPower(0);
         sleep(300);
 
+        int ok=0;
+
         if (robot.color1.argb() < 17000000 ) {
+
+            ok=1;
 
             robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(0.5);
@@ -62,6 +66,8 @@ public class Autonom_test extends LinearOpMode {
             sleep(200);
         }
         else if(robot.color1.argb()>17000000 && robot.color2.argb()<17000000) {
+
+            ok=2;
 
             robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(0.5);
@@ -102,6 +108,8 @@ public class Autonom_test extends LinearOpMode {
         }
         else if(robot.color1.argb()>17000000 && robot.color2.argb()>17000000) {
 
+            ok=3;
+
             robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(0.5);
             robot.LeftFrontMotor.setPower(0.5);
@@ -127,6 +135,99 @@ public class Autonom_test extends LinearOpMode {
             sleep(200);
         }
 
+        if(ok==1)
+        {
+            robot.RightFrontMotor.setPower(-0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(1500);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(200);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(-0.7);
+            robot.LeftBackMotor.setPower(-0.7);
+            sleep(3000);
+
+            /**     LUAM WOOBLE     */
+
+            robot.RightFrontMotor.setPower(-0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(1500);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(200);
+        }
+        else if(ok==2) {
+            robot.RightFrontMotor.setPower(-0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(2100);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(200);
+
+            /**     LUAM WOOBLE     */
+
+            robot.RightFrontMotor.setPower(0.5);
+            robot.RightBackMotor.setPower(0.5);
+            robot.LeftFrontMotor.setPower(0.5);
+            robot.LeftBackMotor.setPower(0.5);
+            sleep(2100);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(200);
+        } else {
+            robot.RightFrontMotor.setPower(-0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(2800);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(200);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(-0.35);
+            robot.LeftBackMotor.setPower(-0.35);
+            sleep(1000);
+
+            /**     LUAM WOOBLE     */
+
+            robot.RightFrontMotor.setPower(-0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(2800);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(200);
+        }
         robot.RightFrontMotor.setPower(0);
         robot.RightBackMotor.setPower(0);
         robot.LeftFrontMotor.setPower(0);
