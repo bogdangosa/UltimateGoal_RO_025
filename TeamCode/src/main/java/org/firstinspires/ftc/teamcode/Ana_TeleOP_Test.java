@@ -56,7 +56,7 @@ public class Ana_TeleOP_Test extends OpMode {
             robot.LeftBackMotor.setPower(leftPower);
         }
         if(gamepad1.a==true)
-            robot.servo.setPosition(1);
+            robot.servo.setPosition(0.15);
         if(gamepad1.b==true)
             robot.servo.setPosition(0);
 
@@ -65,29 +65,10 @@ public class Ana_TeleOP_Test extends OpMode {
             robot.servo.setPosition(1);
         }
 
-        if(robot.distance.getDistance(DistanceUnit.CM) < 7)
-        {
-            robot.servo.setPosition(0);
-        }
-
-        /*
-        telemetry.addData("red1", robot.color1.red());
-        telemetry.addData("green1", robot.color1.green());
-        telemetry.addData("blue1", robot.color1.blue());
-        telemetry.addData("alpha1", robot.color1.alpha());
-        */
-
+        telemetry.addData("Servo", gamepad2.right_trigger);
         telemetry.addData("argb1", robot.color1.argb());
         telemetry.addData("argb2", robot.color2.argb());
 
-        /*
-        telemetry.addData("red2", robot.color2.red());
-        telemetry.addData("green2", robot.color2.green());
-        telemetry.addData("blue2", robot.color2.blue());
-        telemetry.addData("alpha2", robot.color2.alpha());
-        */
-
-        telemetry.addData("distanta:", robot.distance.getDistance(DistanceUnit.CM));
         telemetry.update();
     }
 

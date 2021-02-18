@@ -64,22 +64,25 @@ public class Autonom_test extends LinearOpMode {
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
             sleep(200);
+
+            /** LASAM WOOBLE */
+            robot.servo.setPosition(0);
         }
         else if(robot.color1.argb()>17000000 && robot.color2.argb()<17000000) {
 
             ok=2;
 
-            robot.RightFrontMotor.setPower(-0.5);
-            robot.RightBackMotor.setPower(0.5);
-            robot.LeftFrontMotor.setPower(0.5);
-            robot.LeftBackMotor.setPower(-0.5);
+            robot.RightFrontMotor.setPower(0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
+            robot.LeftBackMotor.setPower(0.5);
             sleep(600);
 
             robot.RightFrontMotor.setPower(0);
             robot.RightBackMotor.setPower(0);
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
-            sleep(200);
+            sleep(300);
 
             robot.RightFrontMotor.setPower(0.5);
             robot.RightBackMotor.setPower(0.5);
@@ -91,19 +94,10 @@ public class Autonom_test extends LinearOpMode {
             robot.RightBackMotor.setPower(0);
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
-            sleep(200);
+            sleep(600);
 
-            robot.RightFrontMotor.setPower(0.5);
-            robot.RightBackMotor.setPower(-0.5);
-            robot.LeftFrontMotor.setPower(-0.5);
-            robot.LeftBackMotor.setPower(0.5);
-            sleep(900);
-
-            robot.RightFrontMotor.setPower(0);
-            robot.RightBackMotor.setPower(0);
-            robot.LeftFrontMotor.setPower(0);
-            robot.LeftBackMotor.setPower(0);
-            sleep(200);
+            /**     LASAM WOBBLE     */
+            robot.servo.setPosition(0);
 
         }
         else if(robot.color1.argb()>17000000 && robot.color2.argb()>17000000) {
@@ -133,6 +127,9 @@ public class Autonom_test extends LinearOpMode {
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
             sleep(200);
+
+            /**     LASAM WOBBLE     */
+            robot.servo.setPosition(0);
         }
 
         if(ok==1)
@@ -182,19 +179,57 @@ public class Autonom_test extends LinearOpMode {
             robot.LeftBackMotor.setPower(0);
             sleep(200);
 
-            /**     LUAM WOOBLE     */
-
-            robot.RightFrontMotor.setPower(0.5);
+            robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(0.5);
             robot.LeftFrontMotor.setPower(0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(900);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(800);
+
+            /**     Luam Wooble     */
+
+            robot.RightFrontMotor.setPower(0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
             robot.LeftBackMotor.setPower(0.5);
-            sleep(2100);
+            sleep(800);
 
             robot.RightFrontMotor.setPower(0);
             robot.RightBackMotor.setPower(0);
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
             sleep(200);
+
+            robot.RightFrontMotor.setPower(0.5);
+            robot.RightBackMotor.setPower(0.5);
+            robot.LeftFrontMotor.setPower(0.5);
+            robot.LeftBackMotor.setPower(0.5);
+            sleep(2200);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(600);
+
+            /**     LASAM WOBBLE    */
+
+            ///PARCARE
+            robot.RightFrontMotor.setPower(-0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(500);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
         } else {
             robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(-0.5);
