@@ -52,7 +52,8 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @Autonomous
-public class Autonom_A extends LinearOpMode {
+public class Autonom_B extends LinearOpMode {
+
 
     Ana_HM_Test robot = new Ana_HM_Test();
 
@@ -184,61 +185,35 @@ public class Autonom_A extends LinearOpMode {
             robot.LeftBackMotor.setPower(0);
             sleep(500);
         }
-                     /**LUAM WOOBLE**/
+                         /**LUAM WOOBLE**/
 
-        if(ok==1)
+        if(ok==2)
         {
-            ///Merge in fata
-            robot.RightFrontMotor.setPower(-0.5);
-            robot.RightBackMotor.setPower(-0.5);
-            robot.LeftFrontMotor.setPower(-0.5);
-            robot.LeftBackMotor.setPower(-0.5);
-            sleep(1300);
-
-            robot.RightFrontMotor.setPower(0);
-            robot.RightBackMotor.setPower(0);
-            robot.LeftFrontMotor.setPower(0);
-            robot.LeftBackMotor.setPower(0);
-            sleep(300);
-
-            ///Strafe dreapta
+           ///Strafe dreapta
             robot.RightFrontMotor.setPower(0.5);
             robot.RightBackMotor.setPower(-0.5);
             robot.LeftFrontMotor.setPower(-0.5);
             robot.LeftBackMotor.setPower(0.5);
-            sleep(900);
+            sleep(700);
 
             robot.RightFrontMotor.setPower(0);
             robot.RightBackMotor.setPower(0);
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
-            sleep(300);
+            sleep(200);
 
             ///Merge in fata
             robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(-0.5);
             robot.LeftFrontMotor.setPower(-0.5);
             robot.LeftBackMotor.setPower(-0.5);
-            sleep(300);
+            sleep(1700);
 
             robot.RightFrontMotor.setPower(0);
             robot.RightBackMotor.setPower(0);
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
-            sleep(750);
-
-            ///Merge in spate
-            robot.RightFrontMotor.setPower(0.5);
-            robot.RightBackMotor.setPower(0.5);
-            robot.LeftFrontMotor.setPower(0.5);
-            robot.LeftBackMotor.setPower(0.5);
-            sleep(300);
-
-            robot.RightFrontMotor.setPower(0);
-            robot.RightBackMotor.setPower(0);
-            robot.LeftFrontMotor.setPower(0);
-            robot.LeftBackMotor.setPower(0);
-            sleep(300);
+            sleep(200);
 
             ///Strafe stanga
             robot.RightFrontMotor.setPower(-0.5);
@@ -251,20 +226,58 @@ public class Autonom_A extends LinearOpMode {
             robot.RightBackMotor.setPower(0);
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
-            sleep(300);
+            sleep(500);
 
-            ///Merge in spate la patratul A
-            robot.RightFrontMotor.setPower(00.5);
-            robot.RightBackMotor.setPower(0.5);
-            robot.LeftFrontMotor.setPower(0.5);
+            ///Strafe dreapta
+            robot.RightFrontMotor.setPower(0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
             robot.LeftBackMotor.setPower(0.5);
-            sleep(1500);
+            sleep(700);
 
             robot.RightFrontMotor.setPower(0);
             robot.RightBackMotor.setPower(0);
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
+            sleep(500);
 
+            ///Merge in spate
+            robot.RightFrontMotor.setPower(0.5);
+            robot.RightBackMotor.setPower(0.5);
+            robot.LeftFrontMotor.setPower(0.5);
+            robot.LeftBackMotor.setPower(0.5);
+            sleep(1700);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(200);
+
+            ///Strafe stanga
+            robot.RightFrontMotor.setPower(-0.5);
+            robot.RightBackMotor.setPower(0.5);
+            robot.LeftFrontMotor.setPower(0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(750);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(200);
+
+            ///Merge in fata (parcare)
+            robot.RightFrontMotor.setPower(-0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(300);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
 
         }
 
