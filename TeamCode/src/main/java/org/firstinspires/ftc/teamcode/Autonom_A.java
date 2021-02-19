@@ -60,12 +60,12 @@ public class Autonom_A extends LinearOpMode {
         robot.init(hardwareMap);
         waitForStart();
 
+        //Mers cu spatele
         robot.RightFrontMotor.setPower(0.5);
         robot.RightBackMotor.setPower(0.5);
         robot.LeftFrontMotor.setPower(0.5);
         robot.LeftBackMotor.setPower(0.5);
         sleep(600);
-
 
         robot.RightFrontMotor.setPower(0);
         robot.RightBackMotor.setPower(0);
@@ -73,6 +73,7 @@ public class Autonom_A extends LinearOpMode {
         robot.LeftBackMotor.setPower(0);
         sleep(300);
 
+        ///Strafe la stanga
         robot.RightFrontMotor.setPower(-0.5);
         robot.RightBackMotor.setPower(0.5);
         robot.LeftFrontMotor.setPower(0.5);
@@ -91,6 +92,7 @@ public class Autonom_A extends LinearOpMode {
 
             ok=1;
 
+            // Mers cu sapatele
             robot.RightFrontMotor.setPower(0.5);
             robot.RightBackMotor.setPower(0.5);
             robot.LeftFrontMotor.setPower(0.5);
@@ -103,6 +105,7 @@ public class Autonom_A extends LinearOpMode {
             robot.LeftBackMotor.setPower(0);
             sleep(200);
 
+            ///Strafe stanga
             robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(0.5);
             robot.LeftFrontMotor.setPower(0.5);
@@ -119,6 +122,7 @@ public class Autonom_A extends LinearOpMode {
 
             ok=2;
 
+            //Strafe stanga
             robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(0.5);
             robot.LeftFrontMotor.setPower(0.5);
@@ -131,6 +135,7 @@ public class Autonom_A extends LinearOpMode {
             robot.LeftBackMotor.setPower(0);
             sleep(200);
 
+            //Mers cu spatele
             robot.RightFrontMotor.setPower(0.5);
             robot.RightBackMotor.setPower(0.5);
             robot.LeftFrontMotor.setPower(0.5);
@@ -143,6 +148,7 @@ public class Autonom_A extends LinearOpMode {
             robot.LeftBackMotor.setPower(0);
             sleep(200);
 
+            //
             robot.RightFrontMotor.setPower(0.5);
             robot.RightBackMotor.setPower(-0.5);
             robot.LeftFrontMotor.setPower(-0.5);
@@ -254,4 +260,5 @@ public class Autonom_A extends LinearOpMode {
         }
 
     }
+
 }

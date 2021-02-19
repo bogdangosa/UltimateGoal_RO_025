@@ -59,6 +59,8 @@ public class Ana_TeleOP_Test extends OpMode {
             robot.servo.setPosition(0.15);
         if(gamepad1.b==true)
             robot.servo.setPosition(0);
+        if(gamepad1.x== true)
+            robot.servo.setPosition(0.3);
 
         if(robot.color1.argb() > 60000000)
         {
