@@ -184,7 +184,7 @@ public class Autonom_C extends LinearOpMode {
             robot.LeftBackMotor.setPower(0);
             sleep(500);
         }
-                   /**LUAM WOOBLE**/
+                   /**LUAM WOBBLE**/
 
         if(ok==3)
         {

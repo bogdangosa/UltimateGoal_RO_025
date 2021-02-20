@@ -184,7 +184,7 @@ public class Autonom_A extends LinearOpMode {
             robot.LeftBackMotor.setPower(0);
             sleep(500);
         }
-                     /**LUAM WOOBLE**/
+                     /**LUAM WOBBLE**/
 
         if(ok==1)
         {
@@ -243,7 +243,7 @@ public class Autonom_A extends LinearOpMode {
             robot.LeftBackMotor.setPower(0);
             sleep(00);
 
-            /** LASAM WOOBLE*/
+            /** LASAM WOBBLE*/
 
             robot.RightFrontMotor.setPower(0);
             robot.RightBackMotor.setPower(0);
