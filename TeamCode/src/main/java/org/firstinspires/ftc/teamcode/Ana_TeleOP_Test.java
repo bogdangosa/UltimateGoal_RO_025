@@ -62,14 +62,10 @@ public class Ana_TeleOP_Test extends OpMode {
         if(gamepad1.x== true)
             robot.servo.setPosition(0.3);
 
-        if(robot.color1.argb() > 60000000)
-        {
-            robot.servo.setPosition(1);
-        }
-
         telemetry.addData("Servo", gamepad2.right_trigger);
         telemetry.addData("argb1", robot.color1.argb());
         telemetry.addData("argb2", robot.color2.argb());
+        telemetry.addData("distance", robot.distance.getDistance(DistanceUnit.CM));
 
         telemetry.update();
     }

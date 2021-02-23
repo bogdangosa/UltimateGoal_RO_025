@@ -11,12 +11,13 @@ public class Autonom_test extends LinearOpMode {
         robot.init(hardwareMap);
         waitForStart();
 
+        robot.servo.setPosition(0.3);
         //Mers cu spatele
         robot.RightFrontMotor.setPower(0.5);
         robot.RightBackMotor.setPower(0.5);
         robot.LeftFrontMotor.setPower(0.5);
         robot.LeftBackMotor.setPower(0.5);
-        sleep(600);
+        sleep(800);
 
         robot.RightFrontMotor.setPower(0);
         robot.RightBackMotor.setPower(0);
@@ -39,11 +40,11 @@ public class Autonom_test extends LinearOpMode {
 
         int ok=0;
 
-        if (robot.color1.argb() < 17000000 ) {
+        if (robot.color1.argb() < 33000000 ) {
 
             ok=1;
 
-            // Mers cu sapatele
+            // Mers cu spatele
             robot.RightFrontMotor.setPower(0.5);
             robot.RightBackMotor.setPower(0.5);
             robot.LeftFrontMotor.setPower(0.5);
@@ -107,7 +108,7 @@ public class Autonom_test extends LinearOpMode {
             robot.RightBackMotor.setPower(0.5);
             robot.LeftFrontMotor.setPower(0.5);
             robot.LeftBackMotor.setPower(0.5);
-            sleep(1800);
+            sleep(2000);
 
             robot.RightFrontMotor.setPower(0);
             robot.RightBackMotor.setPower(0);
@@ -123,7 +124,7 @@ public class Autonom_test extends LinearOpMode {
             robot.RightBackMotor.setPower(-0.5);
             robot.LeftFrontMotor.setPower(-0.5);
             robot.LeftBackMotor.setPower(0.5);
-            sleep(400);
+            sleep(600);
 
             robot.RightFrontMotor.setPower(0);
             robot.RightBackMotor.setPower(0);
@@ -136,10 +137,10 @@ public class Autonom_test extends LinearOpMode {
             ok=3;
 
             //Strafe stanga
-            robot.RightFrontMotor.setPower(-0.5);
-            robot.RightBackMotor.setPower(0.5);
-            robot.LeftFrontMotor.setPower(0.5);
-            robot.LeftBackMotor.setPower(-0.5);
+            robot.RightFrontMotor.setPower(0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
+            robot.LeftBackMotor.setPower(0.5);
             sleep(900);
 
             robot.RightFrontMotor.setPower(0);
@@ -153,7 +154,19 @@ public class Autonom_test extends LinearOpMode {
             robot.RightBackMotor.setPower(0.5);
             robot.LeftFrontMotor.setPower(0.5);
             robot.LeftBackMotor.setPower(0.5);
-            sleep(2500);
+            sleep(2800);
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            sleep(200);
+
+            robot.RightFrontMotor.setPower(-0.5);
+            robot.RightBackMotor.setPower(0.5);
+            robot.LeftFrontMotor.setPower(0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(900);
 
             robot.RightFrontMotor.setPower(0);
             robot.RightBackMotor.setPower(0);
@@ -164,13 +177,6 @@ public class Autonom_test extends LinearOpMode {
             /**     LASAM WOBBLE     */
             robot.servo.setPosition(0);
 
-            //Strafe dreapta
-            robot.RightFrontMotor.setPower(0.5);
-            robot.RightBackMotor.setPower(-0.5);
-            robot.LeftFrontMotor.setPower(-0.5);
-            robot.LeftBackMotor.setPower(0.5);
-            sleep(400);
-
             robot.RightFrontMotor.setPower(0);
             robot.RightBackMotor.setPower(0);
             robot.LeftFrontMotor.setPower(0);
@@ -179,6 +185,12 @@ public class Autonom_test extends LinearOpMode {
         }
 
         if(ok==1) {
+
+            robot.RightFrontMotor.setPower(0);
+            robot.RightBackMotor.setPower(0);
+            robot.LeftFrontMotor.setPower(0);
+            robot.LeftBackMotor.setPower(0);
+            /**
             //Mers cu fata
             robot.RightFrontMotor.setPower(-0.5);
             robot.RightBackMotor.setPower(-0.5);
@@ -218,7 +230,7 @@ public class Autonom_test extends LinearOpMode {
             robot.LeftBackMotor.setPower(0);
             sleep(200);
 
-            /**     LUAM WOBBLE     */
+                 LUAM WOBBLE
 
             //Mers cu spatele
             robot.RightFrontMotor.setPower(0.5);
@@ -258,6 +270,7 @@ public class Autonom_test extends LinearOpMode {
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
             sleep(200);
+             **/
         }
         else if(ok==2) {
             //Mers cu fata
@@ -265,67 +278,19 @@ public class Autonom_test extends LinearOpMode {
             robot.RightBackMotor.setPower(-0.5);
             robot.LeftFrontMotor.setPower(-0.5);
             robot.LeftBackMotor.setPower(-0.5);
-            sleep(2100);
+            sleep(400);
 
-            robot.RightFrontMotor.setPower(0);
-            robot.RightBackMotor.setPower(0);
-            robot.LeftFrontMotor.setPower(0);
-            robot.LeftBackMotor.setPower(0);
-            sleep(200);
 
-            //STrafe la stanga
-            robot.RightFrontMotor.setPower(-0.5);
-            robot.RightBackMotor.setPower(0.5);
-            robot.LeftFrontMotor.setPower(0.5);
-            robot.LeftBackMotor.setPower(-0.5);
-            sleep(900);
-
-            robot.RightFrontMotor.setPower(0);
-            robot.RightBackMotor.setPower(0);
-            robot.LeftFrontMotor.setPower(0);
-            robot.LeftBackMotor.setPower(0);
-            sleep(800);
-
-            /**     Luam Wooble     */
-
-            //Strafe la dreapta
-            robot.RightFrontMotor.setPower(0.5);
-            robot.RightBackMotor.setPower(-0.5);
-            robot.LeftFrontMotor.setPower(-0.5);
-            robot.LeftBackMotor.setPower(0.5);
-            sleep(800);
-
-            robot.RightFrontMotor.setPower(0);
-            robot.RightBackMotor.setPower(0);
-            robot.LeftFrontMotor.setPower(0);
-            robot.LeftBackMotor.setPower(0);
-            sleep(200);
-
-            //Mers cu spatele
-            robot.RightFrontMotor.setPower(0.5);
-            robot.RightBackMotor.setPower(0.5);
-            robot.LeftFrontMotor.setPower(0.5);
-            robot.LeftBackMotor.setPower(0.5);
-            sleep(2200);
-
-            robot.RightFrontMotor.setPower(0);
-            robot.RightBackMotor.setPower(0);
-            robot.LeftFrontMotor.setPower(0);
-            robot.LeftBackMotor.setPower(0);
-            sleep(600);
-
-            /**     LASAM WOBBLE    */
-
-            ///PARCARE
-            robot.RightFrontMotor.setPower(-0.5);
-            robot.RightBackMotor.setPower(-0.5);
-            robot.LeftFrontMotor.setPower(-0.5);
-            robot.LeftBackMotor.setPower(-0.5);
-            sleep(500);
 
         }
         else {
+            robot.RightFrontMotor.setPower(-0.5);
+            robot.RightBackMotor.setPower(-0.5);
+            robot.LeftFrontMotor.setPower(-0.5);
+            robot.LeftBackMotor.setPower(-0.5);
+            sleep(1100);
 
+            /**
             //Strafe la dreapta
             robot.RightFrontMotor.setPower(0.5);
             robot.RightBackMotor.setPower(-0.5);
@@ -365,7 +330,7 @@ public class Autonom_test extends LinearOpMode {
             robot.LeftBackMotor.setPower(0);
             sleep(200);
 
-            /**     LUAM WOOBLE     */
+               LUAM WOOBLE
 
 
             //Strafe la dreapta
@@ -405,7 +370,7 @@ public class Autonom_test extends LinearOpMode {
             robot.RightBackMotor.setPower(0);
             robot.LeftFrontMotor.setPower(0);
             robot.LeftBackMotor.setPower(0);
-            sleep(200);
+            sleep(200); */
         }
         robot.RightFrontMotor.setPower(0);
         robot.RightBackMotor.setPower(0);

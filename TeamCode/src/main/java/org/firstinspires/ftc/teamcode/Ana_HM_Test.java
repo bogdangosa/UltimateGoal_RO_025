@@ -13,6 +13,7 @@ public class   Ana_HM_Test
 
     ColorSensor color1;
     ColorSensor color2;
+    DistanceSensor distance;
 
     public Servo servo= null;
 
@@ -31,6 +32,8 @@ public class   Ana_HM_Test
 
         color2 = Ana_HM_Test.get(ColorSensor.class, "color2");
         color2 = Ana_HM_Test.colorSensor.get("color2");
+
+        distance = Ana_HM_Test.get(DistanceSensor.class, "distance");
 
         servo = Ana_HM_Test.get(Servo.class, "servo");
 
