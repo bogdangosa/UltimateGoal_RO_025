@@ -40,6 +40,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.FORWARD;
+import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.REVERSE;
+
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
  * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
@@ -56,17 +59,51 @@ import com.qualcomm.robotcore.util.Range;
 
 public class ANA_HardwareMap
 {
-    public Servo servo = null;
+    public Servo Ridicare = null;
+    public Servo Impingere = null;
+    public Servo Wobble =  null;
+
+    public DcMotor Outtake = null;
+    public DcMotor Intake = null;
+    public DcMotor RightFrontMotor = null;
+    public DcMotor RightBackMotor = null;
+    public DcMotor LeftFrontMotor = null;
+    public DcMotor LeftBackMotor = null;
 
     HardwareMap Ana_HWMap =  null;
-    public ANA_HardwareMap() {
+
+    public ANA_HardwareMap()
+    {
 
     }
 
     public void init(HardwareMap ahwMap) {
         Ana_HWMap = ahwMap;
 
-        servo= Ana_HWMap.get(Servo.class, "servo");
-        servo.setPosition(0);
+        Ridicare = Ana_HWMap.get(Servo.class, "ridicare");
+        Impingere = Ana_HWMap.get(Servo.class, "impingere");
+        Wobble = Ana_HWMap.get(Servo.class, " wobble");
+
+        Outtake = Ana_HWMap.get(DcMotor.class, "outtake");
+        Intake =  Ana_HWMap.get(DcMotor.class, "intake");
+        RightBackMotor = Ana_HWMap.get(DcMotor.class, "RightBackMotor");
+        RightFrontMotor = Ana_HWMap.get(DcMotor.class, "RightFrontMotor");
+        LeftFrontMotor = Ana_HWMap.get(DcMotor.class, "LeftFrontMotor");
+        LeftBackMotor = Ana_HWMap.get(DcMotor.class, "LeftBackMotor");
+
+        RightBackMotor.setDirection(REVERSE);
+        RightFrontMotor.setDirection(REVERSE);
+        LeftBackMotor.setDirection(FORWARD);
+        LeftFrontMotor.setDirection(REVERSE);
+        Outtake.setDirection(REVERSE);
+
+        Outtake.setPower(0);
+        Intake.setPower(0);
+        RightBackMotor.setPower(0);
+        RightFrontMotor.setPower(0);
+        LeftFrontMotor.setPower(0);
+        LeftBackMotor.setPower(0);
+
+        Impingere.setPosition(0.04);
     }
 }

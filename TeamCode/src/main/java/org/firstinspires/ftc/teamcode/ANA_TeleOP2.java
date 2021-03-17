@@ -34,20 +34,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-/**
- * This file contains an example of an iterative (Non-Linear) "OpMode".
- * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
- * The names of OpModes appear on the menu of the FTC Driver Station.
- * When an selection is made from the menu, the corresponding OpMode
- * class is instantiated on the Robot Controller and executed.
- *
- * This particular OpMode just executes a basic Tank Drive Teleop for a two wheeled robot
- * It includes all the skeletal structure that all iterative OpModes contain.
- *
- * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
- */
-
 @TeleOp(name="ANA_TeleOP2", group="Iterative Opmode")
 public class ANA_TeleOP2 extends OpMode
 {
@@ -65,7 +51,64 @@ public class ANA_TeleOP2 extends OpMode
     @Override
     public void loop()
     {
-        robot.servo.setPosition(gamepad1.right_trigger);
+        //robot.Ridicare.setPosition(gamepad2.right_trigger);
+        //robot.Impingere.setPosition(gamepad2.left_trigger);
+        ///robot.Wobble.setPosition(gamepad1.right_trigger);
+
+        double drive = gamepad1.right_stick_y;
+        double turn = gamepad1.left_stick_x;
+
+        double rightPower;
+        double leftPower;
+
+        double RightStrafe = gamepad1.right_trigger-0.2;
+        double LeftStrafe = gamepad1.left_trigger-0.2;
+
+        rightPower = Range.clip(drive + turn,-1.0,1.0);
+        leftPower  = Range.clip(drive - turn,-1.0,1.0);
+
+        if(RightStrafe>0)
+        {
+            robot.RightFrontMotor.setPower(RightStrafe);
+            robot.RightBackMotor.setPower(-RightStrafe);
+            robot.LeftFrontMotor.setPower(-RightStrafe);
+            robot.LeftBackMotor.setPower(RightStrafe);
+        }
+        else if(LeftStrafe>0)
+        {
+            robot.RightFrontMotor.setPower(-LeftStrafe);
+            robot.RightBackMotor.setPower(LeftStrafe);
+            robot.LeftFrontMotor.setPower(LeftStrafe);
+            robot.LeftBackMotor.setPower(-LeftStrafe);
+        }
+        else
+        {
+            robot.RightFrontMotor.setPower(rightPower);
+            robot.RightBackMotor.setPower(rightPower);
+            robot.LeftFrontMotor.setPower(leftPower);
+            robot.LeftBackMotor.setPower(leftPower);
+        }
+
+        if(gamepad2.a )
+            robot.Ridicare.setPosition(0.2);
+        else if(gamepad2.b)
+            robot.Ridicare.setPosition(0.6);
+
+        if(gamepad2.x )
+            robot.Impingere.setPosition(0.2);
+        else if(gamepad2.y )
+            robot.Impingere.setPosition(0.04);
+
+        if(gamepad1.a )
+            robot.Ridicare.setPosition(0.2);
+        else if(gamepad1.b)
+            robot.Ridicare.setPosition(0.6);
+
+        robot.Outtake.setPower(gamepad2.left_trigger);
+        robot.Intake.setPower(gamepad2.right_trigger);
+
+        telemetry.addData("Ridicare: ", gamepad1.right_trigger);
+        telemetry.addData("Impingere", gamepad1.left_trigger);
         telemetry.update();
     }
 }
