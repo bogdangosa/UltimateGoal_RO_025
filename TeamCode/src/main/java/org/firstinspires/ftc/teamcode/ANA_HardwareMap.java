@@ -65,11 +65,11 @@ public class ANA_HardwareMap
         LeftFrontMotor=Ana_HM_Test.get(DcMotor.class, "LeftFrontMotor");
         LeftBackMotor=Ana_HM_Test.get(DcMotor.class, "LeftBackMotor");
 
-        RightBackMotor.setDirection(FORWARD);
-        RightFrontMotor.setDirection(FORWARD);
-        LeftBackMotor.setDirection(REVERSE);
-        LeftFrontMotor.setDirection(REVERSE);
-        Outtake.setDirection(REVERSE);
+        RightBackMotor.setDirection(REVERSE);
+        RightFrontMotor.setDirection(REVERSE);
+        LeftBackMotor.setDirection(FORWARD);
+        LeftFrontMotor.setDirection(FORWARD);
+        Intake.setDirection(REVERSE);
 
         Outtake.setPower(0);
         Intake.setPower(0);

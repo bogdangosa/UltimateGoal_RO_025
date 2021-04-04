@@ -63,10 +63,7 @@ public class Mia_FIRST_HardwareMap
     public DcMotor RightBackMotor = null;
     public DcMotor LeftBackMotor = null;
     public DcMotor LeftFrontMotor = null;
-    public DcMotor RightIntake = null;
-    public DcMotor LeftIntake = null;
-    public Servo Bariera = null;
-    public Servo Impingere = null;
+
 
     HardwareMap Mia_hwm = null;
     public void init(HardwareMap ahwMap) {
@@ -75,26 +72,18 @@ public class Mia_FIRST_HardwareMap
         RightFrontMotor = Mia_hwm.get(DcMotor.class, "RightFrontMotor");
         LeftFrontMotor = Mia_hwm.get(DcMotor.class, "LeftFrontMotor");
         LeftBackMotor = Mia_hwm.get(DcMotor.class, "LeftBackMotor");
-        RightIntake = Mia_hwm.get(DcMotor.class, "RightIntake");
-        LeftIntake = Mia_hwm.get(DcMotor.class, "LeftIntake");
-        Bariera = Mia_hwm.get(Servo.class, "Bariera");
-        Impingere = Mia_hwm.get(Servo.class, "Impingere");
+
 
         RightBackMotor.setDirection(REVERSE);
         RightFrontMotor.setDirection(REVERSE);
         LeftBackMotor.setDirection(FORWARD);
         LeftFrontMotor.setDirection(FORWARD);
-        RightIntake.setDirection(FORWARD);
-        LeftIntake.setDirection(REVERSE);
+
 
         RightBackMotor.setPower(0);
         RightFrontMotor.setPower(0);
         LeftFrontMotor.setPower(0);
         LeftBackMotor.setPower(0);
-        RightIntake.setPower(0);
-        LeftIntake.setPower(0);
-        Bariera.setPosition(0);
-        Impingere.setPosition(0);
 
     }
 

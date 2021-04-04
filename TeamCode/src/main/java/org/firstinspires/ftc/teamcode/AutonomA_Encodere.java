@@ -11,8 +11,8 @@ import static org.firstinspires.ftc.teamcode.Ana_HM_Test.StrafeValue;
 import static org.firstinspires.ftc.teamcode.Ana_HM_Test.TURN_SPEED;
 import static org.firstinspires.ftc.teamcode.Ana_HM_Test.TurnValue;
 
-@Autonomous(name="AUtonomB_Encodere")
-public class AutonomB_Encodere extends LinearOpMode{
+@Autonomous(name="AUtonomA_Encodere")
+public class AutonomA_Encodere extends LinearOpMode{
     Ana_HM_Test robot   = new Ana_HM_Test();
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -41,74 +41,24 @@ public class AutonomB_Encodere extends LinearOpMode{
         waitForStart();
 
         robot.Wobble.setPosition(0.6);
-        StrafeLeft(33, putere);
+        StrafeLeft(35, putere);
         sleep(200);
-        DriveForward(103, putere);
+        DriveForward(100, putere);
         sleep(200);
         ///RotateLeft(10);
         sleep(1000);
-       /// RotateRight(10);
+        RotateRight(10);
         ///DriveForward(10, putere);
-        sleep(100);
+        sleep(200);
         if (robot.color1.alpha() < 140)
         {
             RotateLeft(15);
-            StrafeLeft(100, putere);
-            RotateRight(15);
-            sleep(100);
-            DriveForward(135, putere);
-            RotateLeft(170);
-            DriveBackward(25, putere);
-            sleep(100);
-            robot.Wobble.setPosition(0.15);
-        }
-        else if (robot.color1.alpha() > 120 && robot.color2.alpha() < 120 )
-        {
-            StrafeLeft(15, putere);
-            robot.Intake.setPower(-1);
-            DriveForward(45, 0.15);
-            sleep(500);
-            robot.Intake.setPower(0);
-            RotateRight(10);
-            DriveForward(220, putere);
-            sleep(200);
-            robot.Wobble.setPosition(0.3);
-            sleep(100);
-            DriveForward(65, putere);
-            robot.Ridicare.setPosition(0.15);
-            robot.Outtake.setPower(-1);
-            robot.Impingere.setPosition(0.2);
-            sleep(2000);
-            robot.Outtake.setPower(0);
-            sleep(200);
-            robot.Ridicare.setPosition(0.6);
-            robot.Impingere.setPosition(0.04);
-            DriveBackward(150, putere);
-            RotateLeft(155);
-            DriveForward(200,putere);
-            StrafeRight(73,putere);
-            robot.Wobble.setPosition(0.45);
-            sleep(300);
-            robot.Wobble.setPosition(0.6);
-            sleep(300);
-        }
-        else if(robot.color1.alpha() > 120 && robot.color2.alpha()>120)
-        {
-            RotateLeft(15);
             StrafeLeft(90, putere);
-            RotateRight(25);
             sleep(200);
-            DriveForward(300, putere);
-            RotateLeft(165);
-            DriveBackward(50, putere);
-            StrafeRight(50,putere);
-            sleep(150);
+            DriveForward(120, putere);
+            sleep(200);
             robot.Wobble.setPosition(0.3);
-            StrafeLeft(20, putere);
-            DriveForward(150, putere);
-
         }
-
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
@@ -139,9 +89,9 @@ public class AutonomB_Encodere extends LinearOpMode{
 
                 runtime.reset();
                 robot.LeftBackMotor.setPower(speed);
-                robot.RightBackMotor.setPower(-speed + 0.2);
+                robot.RightBackMotor.setPower(-speed);
                 robot.LeftFrontMotor.setPower(speed);
-                robot.RightFrontMotor.setPower(-speed + 0.2);
+                robot.RightFrontMotor.setPower(-speed);
 
                 while (opModeIsActive() &&
                         (runtime.seconds() < timeoutS) &&

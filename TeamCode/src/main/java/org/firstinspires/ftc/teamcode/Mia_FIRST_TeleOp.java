@@ -94,9 +94,6 @@ public class Mia_FIRST_TeleOp extends OpMode
         double RightStrafe = gamepad1.right_trigger;
         double LeftStrafe = gamepad1.left_trigger;
 
-        double InTake = gamepad2.right_trigger;
-        double OutTake = gamepad2.left_trigger;
-
         rightPower = Range.clip(drive + turn,-1.0,1.0);
         leftPower  = Range.clip(drive - turn,-1.0,1.0);
 
@@ -121,37 +118,6 @@ public class Mia_FIRST_TeleOp extends OpMode
             robot.LeftFrontMotor.setPower(leftPower);
             robot.LeftBackMotor.setPower(leftPower);
         }
-        if(InTake>0)
-        {
-            robot.RightIntake.setPower(InTake);
-            robot.LeftIntake.setPower(InTake);
-        }
-        else if(OutTake>0)
-        {
-            robot.RightIntake.setPower(-OutTake);
-            robot.LeftIntake.setPower(-OutTake);
-        }
-        else
-        {
-            robot.RightIntake.setPower(0);
-            robot.LeftIntake.setPower(0);
-        }
-        if(gamepad2.a)
-        {
-            robot.Bariera.setPosition(1);
-        }
-        if(gamepad2.b)
-        {
-            robot.Bariera.setPosition(0);
-        }
-        if(gamepad2.x)
-        {
-            robot.Impingere.setPosition(1);
-        }
-        if(gamepad2.y)
-        {
-            robot.Impingere.setPosition(0);
-        }
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
@@ -165,8 +131,8 @@ public class Mia_FIRST_TeleOp extends OpMode
         robot.LeftBackMotor.setPower(0);
         robot.LeftFrontMotor.setPower(0);
         robot.RightBackMotor.setPower(0);
-        robot.LeftIntake.setPower(0);
-        robot.RightIntake.setPower(0);
+        robot.RightFrontMotor.setPower(0);
+
     }
 
 }
