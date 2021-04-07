@@ -43,32 +43,32 @@ public class ANA_HardwareMap
     public DcMotor Outtake = null;
     public DcMotor Intake = null;
 
-    HardwareMap Ana_HM_Test =  null;
+    HardwareMap ANA_HardwareMap =  null;
 
     public void init(HardwareMap ahwMap) {
-        Ana_HM_Test = ahwMap;
+        ANA_HardwareMap = ahwMap;
 
-        color1 = Ana_HM_Test.get(ColorSensor.class, "color1");
-        color1 = Ana_HM_Test.colorSensor.get("color1");
+        color1 = ANA_HardwareMap.get(ColorSensor.class, "color1");
+        color1 = ANA_HardwareMap.colorSensor.get("color1");
 
-        color2 = Ana_HM_Test.get(ColorSensor.class, "color2");
-        color2 = Ana_HM_Test.colorSensor.get("color2");
+        color2 = ANA_HardwareMap.get(ColorSensor.class, "color2");
+        color2 = ANA_HardwareMap.colorSensor.get("color2");
 
-        Ridicare = Ana_HM_Test.get(Servo.class, "ridicare");
-        Impingere = Ana_HM_Test.get(Servo.class, "impingere");
-        Wobble = Ana_HM_Test.get(Servo.class, " wobble");
+        Ridicare = ANA_HardwareMap.get(Servo.class, "ridicare");
+        Impingere = ANA_HardwareMap.get(Servo.class, "impingere");
+        Wobble = ANA_HardwareMap.get(Servo.class, " wobble");
 
-        Outtake = Ana_HM_Test.get(DcMotor.class, "outtake");
-        Intake =  Ana_HM_Test.get(DcMotor.class, "intake");
-        RightBackMotor=Ana_HM_Test.get(DcMotor.class, "RightBackMotor");
-        RightFrontMotor=Ana_HM_Test.get(DcMotor.class, "RightFrontMotor");
-        LeftFrontMotor=Ana_HM_Test.get(DcMotor.class, "LeftFrontMotor");
-        LeftBackMotor=Ana_HM_Test.get(DcMotor.class, "LeftBackMotor");
+        Outtake = ANA_HardwareMap.get(DcMotor.class, "outtake");
+        Intake =  ANA_HardwareMap.get(DcMotor.class, "intake");
+        RightBackMotor = ANA_HardwareMap.get(DcMotor.class, "RightBackMotor");
+        RightFrontMotor = ANA_HardwareMap.get(DcMotor.class, "RightFrontMotor");
+        LeftFrontMotor = ANA_HardwareMap.get(DcMotor.class, "LeftFrontMotor");
+        LeftBackMotor = ANA_HardwareMap.get(DcMotor.class, "LeftBackMotor");
 
-        RightBackMotor.setDirection(REVERSE);
-        RightFrontMotor.setDirection(REVERSE);
-        LeftBackMotor.setDirection(FORWARD);
-        LeftFrontMotor.setDirection(FORWARD);
+        RightBackMotor.setDirection(FORWARD);
+        RightFrontMotor.setDirection(FORWARD);
+        LeftBackMotor.setDirection(REVERSE);
+        LeftFrontMotor.setDirection(REVERSE);
         Intake.setDirection(REVERSE);
 
         Outtake.setPower(0);

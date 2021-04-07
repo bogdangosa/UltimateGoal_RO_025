@@ -2,12 +2,28 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import java.util.Locale;
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.FORWARD;
 import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.REVERSE;
+
+
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
+import org.firstinspires.ftc.robotcore.external.Func;
+import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.robotcore.external.navigation.Position;
+import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 public class   Ana_HM_Test
 {
@@ -48,6 +64,7 @@ public class   Ana_HM_Test
     public void init(HardwareMap ahwMap) {
         Ana_HM_Test = ahwMap;
 
+
         color1 = Ana_HM_Test.get(ColorSensor.class, "color1");
         color1 = Ana_HM_Test.colorSensor.get("color1");
 
@@ -70,6 +87,7 @@ public class   Ana_HM_Test
         LeftBackMotor.setDirection(REVERSE);
         LeftFrontMotor.setDirection(REVERSE);
         Outtake.setDirection(REVERSE);
+        Intake.setDirection(FORWARD);
 
         Outtake.setPower(0);
         Intake.setPower(0);
@@ -81,4 +99,5 @@ public class   Ana_HM_Test
         Wobble.setPosition(0.45);
 
     }
+
 }
