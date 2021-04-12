@@ -19,15 +19,16 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import java.util.Locale;
 
-import static org.firstinspires.ftc.teamcode.Ana_HM_Test.COUNTS_PER_MM;
-import static org.firstinspires.ftc.teamcode.Ana_HM_Test.DriveValue;
-import static org.firstinspires.ftc.teamcode.Ana_HM_Test.StrafeValue;
-import static org.firstinspires.ftc.teamcode.Ana_HM_Test.TURN_SPEED;
-import static org.firstinspires.ftc.teamcode.Ana_HM_Test.TurnValue;
+import static org.firstinspires.ftc.teamcode.A_hardwareMap.COUNTS_PER_MM;
+import static org.firstinspires.ftc.teamcode.A_hardwareMap.DriveValue;
+import static org.firstinspires.ftc.teamcode.A_hardwareMap.StrafeValue;
+import static org.firstinspires.ftc.teamcode.A_hardwareMap.TURN_SPEED;
+import static org.firstinspires.ftc.teamcode.A_hardwareMap.TurnValue;
 
-@Autonomous(name="AUtonomB_Encodere")
-public class AutonomB_Encodere extends LinearOpMode{
-    ANA_HardwareMap robot   = new ANA_HardwareMap();
+@Autonomous(name="Autonom_Encodere")
+public class A_Autonom_Encodere extends LinearOpMode{
+    A_hardwareMap robot   = new A_hardwareMap();
+
     private ElapsedTime runtime = new ElapsedTime();
 
     // The IMU sensor object
@@ -86,14 +87,15 @@ public class AutonomB_Encodere extends LinearOpMode{
         double putere = 0.6;
 
         waitForStart();
-        DriveBackward(500, 0.15);
-        sleep(10000);
-        /*
-        DriveForward(5000, 0.15);
-        sleep(2000);
-        StrafeLeft(200, 0.3);
-        sleep(2000);
-        StrafeRight(200, 0.3);
+
+        DriveForward(200, 0.5);
+        sleep(250);
+        DriveBackward(200, 0.5);
+        sleep(250);
+        StrafeLeft(200, 0.5);
+        sleep(250);
+        StrafeRight(200, 0.5);
+
 
         /*
         robot.Wobble.setPosition(0.6);
@@ -214,6 +216,8 @@ public class AutonomB_Encodere extends LinearOpMode{
                             robot.LeftBackMotor.getCurrentPosition(),
                             robot.RightBackMotor.getCurrentPosition()
                     );
+                    telemetry.addData("BACK", String.valueOf(robot.RightBackMotor.getPower()));
+                    telemetry.addData("FRONT", String.valueOf(robot.RightFrontMotor.getPower()));
                     telemetry.update();
                 }
 
@@ -300,28 +304,28 @@ public class AutonomB_Encodere extends LinearOpMode{
 
     public void DriveForward (double distance, double speed)
     {
-        EncoderDrive(speed, -distance,15);
+        EncoderDrive(-speed, distance,15);
         sleep(500);
         gyro(-Double.parseDouble(formatAngle(angles.angleUnit, angles.firstAngle)));
     }
 
     public void DriveBackward (double distance, double speed)
     {
-        EncoderDrive(-speed, distance,15);
+        EncoderDrive(speed, -distance,15);
         sleep(500);
         gyro(Double.parseDouble(formatAngle(angles.angleUnit, angles.firstAngle)));
     }
 
     public void StrafeRight(double distance, double speed)
     {
-        EncoderStrafe(speed, distance, 15);
+        EncoderStrafe(-speed, -distance, 15);
         sleep(500);
         gyro(Double.parseDouble(formatAngle(angles.angleUnit, angles.firstAngle)));
     }
 
     public void StrafeLeft (double distance, double speed)
     {
-        EncoderStrafe(-speed, -distance, 15);
+        EncoderStrafe(speed, distance, 15);
         sleep(500);
         gyro(Double.parseDouble(formatAngle(angles.angleUnit, angles.firstAngle)));
     }

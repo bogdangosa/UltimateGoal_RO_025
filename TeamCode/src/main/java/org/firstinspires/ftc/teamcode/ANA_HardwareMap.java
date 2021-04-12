@@ -11,19 +11,14 @@ import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.REVERSE;
 
 public class ANA_HardwareMap
 {
-    public static final double      PRINDERE_INITIAL      =  0.25 ;
-    public static final double      PRINDERE_COMPLETA = 1;
-    public static final double      TAVA_JOS =  0.75 ;
-    public static final double      TAVA_SUS   = 0.25 ;
     public static final double      DriveValue = 2.43;
     public static final double      TurnValue = 2;
     public static final double      StrafeValue = 2;
     public static final double      PullValue = 125;
-    public static final double      COUNTS_PER_MOTOR_REV    = 1120 ;    // eg: TETRIX Motor Encoder 1440 tetrix
-    public static final double      DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
-    public static final double      WHEEL_DIAMETER_MM   = 4.0 * 25.4;     // For figuring circumference
-    public static final double     COUNTS_PER_MM         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
-            (WHEEL_DIAMETER_MM * 3.1415);
+    public static final double      COUNTS_PER_MOTOR_REV = 1120 ;    // eg: TETRIX Motor Encoder 1440 tetrix
+    public static final double      DRIVE_GEAR_REDUCTION = 2.0 ;     // This is < 1.0 if geared UP
+    public static final double      WHEEL_DIAMETER_MM = 4.0 * 25.4;     // For figuring circumference
+    public static final double     COUNTS_PER_MM = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_MM * 3.1415);
     public static final double      DRIVE_SPEED = 1;
     public static final double      TURN_SPEED = 0.5;
     public static final double      PULL_SPEED = 0.1;

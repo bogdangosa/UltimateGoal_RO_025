@@ -24,10 +24,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
-@TeleOp(name="ANA_TeleOP2", group="Iterative Opmode")
-public class ANA_TeleOP2 extends OpMode
+@TeleOp(name="A_TeleOP", group="Iterative Opmode")
+public class A_TeleOP extends OpMode
 {
-    Ana_HM_Test robot = new Ana_HM_Test();
+    A_hardwareMap robot = new A_hardwareMap();
 
     // The IMU sensor object
     BNO055IMU imu;
@@ -96,7 +96,7 @@ public class ANA_TeleOP2 extends OpMode
             turn = gamepad1.left_trigger * 0.2;
         }
 
-        rightPower = Range.clip(drive + turn,-1.0,1.0)+0.1;
+        rightPower = Range.clip(drive + turn,-1.0,1.0);
         leftPower  = Range.clip(drive - turn,-1.0,1.0);
 
         if(RightStrafe>0)

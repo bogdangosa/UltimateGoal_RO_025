@@ -25,7 +25,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
-public class   Ana_HM_Test
+public class   A_hardwareMap
 {
     public static final double      PRINDERE_INITIAL      =  0.25 ;
     public static final double      PRINDERE_COMPLETA = 1;
@@ -59,30 +59,30 @@ public class   Ana_HM_Test
     public DcMotor Outtake = null;
     public DcMotor Intake = null;
 
-    HardwareMap Ana_HM_Test =  null;
+    HardwareMap A_hardwareMap =  null;
 
     public void init(HardwareMap ahwMap) {
-        Ana_HM_Test = ahwMap;
+        A_hardwareMap = ahwMap;
 
 
-        color1 = Ana_HM_Test.get(ColorSensor.class, "color1");
-        color1 = Ana_HM_Test.colorSensor.get("color1");
+        color1 = A_hardwareMap.get(ColorSensor.class, "color1");
+        color1 = A_hardwareMap.colorSensor.get("color1");
 
-        color2 = Ana_HM_Test.get(ColorSensor.class, "color2");
-        color2 = Ana_HM_Test.colorSensor.get("color2");
+        color2 = A_hardwareMap.get(ColorSensor.class, "color2");
+        color2 = A_hardwareMap.colorSensor.get("color2");
 
-        Ridicare = Ana_HM_Test.get(Servo.class, "ridicare");
-        Impingere = Ana_HM_Test.get(Servo.class, "impingere");
-        Wobble = Ana_HM_Test.get(Servo.class, " wobble");
+        Ridicare = A_hardwareMap.get(Servo.class, "ridicare");
+        Impingere = A_hardwareMap.get(Servo.class, "impingere");
+        Wobble = A_hardwareMap.get(Servo.class, " wobble");
 
-        Outtake = Ana_HM_Test.get(DcMotor.class, "outtake");
-        Intake =  Ana_HM_Test.get(DcMotor.class, "intake");
-        RightBackMotor=Ana_HM_Test.get(DcMotor.class, "RightBackMotor");
-        RightFrontMotor=Ana_HM_Test.get(DcMotor.class, "RightFrontMotor");
-        LeftFrontMotor=Ana_HM_Test.get(DcMotor.class, "LeftFrontMotor");
-        LeftBackMotor=Ana_HM_Test.get(DcMotor.class, "LeftBackMotor");
+        Outtake = A_hardwareMap.get(DcMotor.class, "outtake");
+        Intake =  A_hardwareMap.get(DcMotor.class, "intake");
+        RightBackMotor = A_hardwareMap.get(DcMotor.class, "RightBackMotor");
+        RightFrontMotor = A_hardwareMap.get(DcMotor.class, "RightFrontMotor");
+        LeftFrontMotor = A_hardwareMap.get(DcMotor.class, "LeftFrontMotor");
+        LeftBackMotor = A_hardwareMap.get(DcMotor.class, "LeftBackMotor");
 
-        RightBackMotor.setDirection(FORWARD);
+        RightBackMotor.setDirection(REVERSE);
         RightFrontMotor.setDirection(FORWARD);
         LeftBackMotor.setDirection(REVERSE);
         LeftFrontMotor.setDirection(REVERSE);
@@ -97,7 +97,6 @@ public class   Ana_HM_Test
         LeftBackMotor.setPower(0);
 
         Wobble.setPosition(0.45);
-
     }
 
 }
